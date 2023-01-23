@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:59:01 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/23 01:08:10 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:38:01 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,30 @@ void	ft_raycast(t_data *data, double	rayangle)
 	xstep = TILE_SIZE / tan(rayangle);
 	xstep *= (data->player.israyfacingl && xstep > 0) ? -1 : 1;
 	xstep *= (data->player.israyfacingl && xstep < 0) ? -1 : 1;
+
+	// ft_horizontal_ray();
+	double	nexthorztouchx = xintercept;
+	double	nexthorztouchy = yintercept;
+	double	foundhorzhit = 0;
+	double	wallhitx = 0;
+	double	wallhity = 0;
+	if (data->player.israyfacingu)
+		nexthorztouchy--;
+	while (nexthorztouchx >= 0 && nexthorztouchx <= WIDTH_WIN && nexthorztouchy >= 0 && nexthorztouchy <= LENGHT_WIN)
+	{
+		if (ft_has_wall(data, nexthorztouchx, nexthorztouchy))
+		{
+			foundhorzhit = 1;
+			wallhitx = nexthorztouchx;
+			wallhity = nexthorztouchy;
+			break ;
+		}
+		else
+		{
+			nexthorztouchx += xstep;
+			nexthorztouchy += ystep;
+		}
+	}
 }
 
 void	draw_ray(t_data *data, int x, int y, int color)
@@ -128,7 +152,6 @@ void	draw_ray(t_data *data, int x, int y, int color)
 	{
 		data->player.ray_angle = ft_normalizeangle(data->player.ray_angle);
 		ft_raycast(data, data->player.ray_angle);
-		//raycast
 		j = 0;
 		while (j < 10)
 		{

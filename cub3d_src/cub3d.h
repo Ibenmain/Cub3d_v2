@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/23 02:08:58 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:51:30 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,4 +173,5 @@ void	ft_player_left(t_data *data);
 void	ft_player_right(t_data *data);
 void	ft_player_up(t_data *data);
 void	ft_player_down(t_data *data);
+int		ft_has_wall(t_data *data, double x, double y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/23 00:58:00 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:43:54 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	ft_put_image_to_win(t_data *data)
 		}
 	}
 	draw_circle(data, data->player.i, data->player.j, 0x00000000);
-	draw_line(data, data->player.i, data->player.j, 0x00000000);
+	// draw_line(data, data->player.i, data->player.j, 0x00000000);
 	draw_ray(data, data->player.i, data->player.j, 0x00990000);
 	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, \
 		data->img.img, 0, 0);
