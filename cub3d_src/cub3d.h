@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/22 00:34:35 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/23 02:08:58 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ typedef struct s_player{
 	double	fov_angle;
 	double	num_ray;
 	double	ray_angle;
+	double	wallhitx;
+	double	wallhity;
+	double	distanc;
+	double	israyfacingd;
+	double	israyfacingu;
+	double	israyfacingl;
+	double	israyfacingr;
 }		t_player;
 
 typedef struct s_data{
@@ -161,5 +168,9 @@ int		key_pressed(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);
 void	ft_init_player(t_data *data);
 void	ft_mlx_loop(t_data *data);
-
+int		ft_has_wall(t_data *data, double x, double y);
+void	ft_player_left(t_data *data);
+void	ft_player_right(t_data *data);
+void	ft_player_up(t_data *data);
+void	ft_player_down(t_data *data);
 #endif

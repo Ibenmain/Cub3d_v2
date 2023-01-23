@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:59:01 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/22 00:55:55 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/23 01:08:10 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,31 @@ void	draw_line(t_data *data, int x, int y, int color)
 	}
 }
 
+double	ft_normalizeangle(double rayangle)
+{
+	rayangle = (int)rayangle % (int)(2 * M_PI);
+	if (rayangle < 0)
+		rayangle = (2 * M_PI) + rayangle;
+	return (rayangle);
+}
+
+void	ft_raycast(t_data *data, double	rayangle)
+{
+	double	xintercept;
+	double	yintercept;
+	double	xstep;
+	double	ystep;
+
+	yintercept = floor(data->player.j / TILE_SIZE) * TILE_SIZE;
+	yintercept += data->player.israyfacingd ? TILE_SIZE : 0;
+	xintercept = data->player.i + (yintercept - data->player.j) / tan(rayangle);
+	ystep = TILE_SIZE;
+	ystep *= data->player.israyfacingu ? -1 : 1;
+	xstep = TILE_SIZE / tan(rayangle);
+	xstep *= (data->player.israyfacingl && xstep > 0) ? -1 : 1;
+	xstep *= (data->player.israyfacingl && xstep < 0) ? -1 : 1;
+}
+
 void	draw_ray(t_data *data, int x, int y, int color)
 {
 	double	i;
@@ -97,9 +122,13 @@ void	draw_ray(t_data *data, int x, int y, int color)
 
 	j = 0;
 	i = 0;
-	data->player.ray_angle = data->player.rotationangl - (data->player.fov_angle / 2);
+	data->player.ray_angle = data->player.rotationangl \
+		- (data->player.fov_angle / 2);
 	while (i < data->player.num_ray)
 	{
+		data->player.ray_angle = ft_normalizeangle(data->player.ray_angle);
+		ft_raycast(data, data->player.ray_angle);
+		//raycast
 		j = 0;
 		while (j < 10)
 		{
