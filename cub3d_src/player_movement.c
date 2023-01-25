@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:04:15 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/23 02:06:35 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:47:09 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	ft_has_wall(t_data *data, double x, double y)
 		return (0);
 	mapx = floor(x / TILE_SIZE);
 	mapy = floor(y / TILE_SIZE);
+	if ((data->map[(int)mapx][(int)floor(data->player.j / TILE_SIZE)] != '0' \
+		&& data->map[(int)mapx][(int)floor(data->player.j / TILE_SIZE)] != 'N') \
+		&& (data->map[(int)floor(data->player.i / TILE_SIZE)][(int)mapy] != '0' \
+		&& data->map[(int)floor(data->player.i / TILE_SIZE)][(int)mapy] != 'N'))
+		return (1);
 	return (data->map[(int)mapx][(int)mapy] != '0' \
 		&& data->map[(int)mapx][(int)mapy] != 'N');
 }
@@ -31,9 +36,9 @@ void	ft_player_left(t_data *data)
 	double	newposy;
 
 	newposx = data->player.i + cos(data->player.rotationangl \
-		+ 90 * (M_PI / 180)) * data->player.movespeed;
+		+ (M_PI / 2)) * data->player.movespeed;
 	newposy = data->player.j + sin(data->player.rotationangl \
-		+ 90 * (M_PI / 180)) * data->player.movespeed;
+		+ (M_PI / 2)) * data->player.movespeed;
 	if (!ft_has_wall(data, newposx, newposy))
 	{
 		data->player.i = newposx;
@@ -47,9 +52,9 @@ void	ft_player_right(t_data *data)
 	double	newposy;
 
 	newposx = data->player.i + cos(data->player.rotationangl \
-		-90 * (M_PI / 180)) * data->player.movespeed;
+		- (M_PI / 2)) * data->player.movespeed;
 	newposy = data->player.j + sin(data->player.rotationangl \
-		-90 * (M_PI / 180)) * data->player.movespeed;
+		- (M_PI / 2)) * data->player.movespeed;
 	if (!ft_has_wall(data, newposx, newposy))
 	{
 		data->player.i = newposx;

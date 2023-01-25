@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:59:01 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/23 16:38:01 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:37:04 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,54 +88,54 @@ void	draw_line(t_data *data, int x, int y, int color)
 	}
 }
 
-double	ft_normalizeangle(double rayangle)
-{
-	rayangle = (int)rayangle % (int)(2 * M_PI);
-	if (rayangle < 0)
-		rayangle = (2 * M_PI) + rayangle;
-	return (rayangle);
-}
+// double	ft_normalizeangle(double rayangle)
+// {
+// 	rayangle = (int)rayangle % (int)(2 * M_PI);
+// 	if (rayangle < 0)
+// 		rayangle = (2 * M_PI) + rayangle;
+// 	return (rayangle);
+// }
 
-void	ft_raycast(t_data *data, double	rayangle)
-{
-	double	xintercept;
-	double	yintercept;
-	double	xstep;
-	double	ystep;
+// void	ft_raycast(t_data *data, double	rayangle)
+// {
+// 	double	xintercept;
+// 	double	yintercept;
+// 	double	xstep;
+// 	double	ystep;
 
-	yintercept = floor(data->player.j / TILE_SIZE) * TILE_SIZE;
-	yintercept += data->player.israyfacingd ? TILE_SIZE : 0;
-	xintercept = data->player.i + (yintercept - data->player.j) / tan(rayangle);
-	ystep = TILE_SIZE;
-	ystep *= data->player.israyfacingu ? -1 : 1;
-	xstep = TILE_SIZE / tan(rayangle);
-	xstep *= (data->player.israyfacingl && xstep > 0) ? -1 : 1;
-	xstep *= (data->player.israyfacingl && xstep < 0) ? -1 : 1;
+// 	yintercept = floor(data->player.j / TILE_SIZE) * TILE_SIZE;
+// 	yintercept += data->player.israyfacingd ? TILE_SIZE : 0;
+// 	xintercept = data->player.i + (yintercept - data->player.j) / tan(rayangle);
+// 	ystep = TILE_SIZE;
+// 	ystep *= data->player.israyfacingu ? -1 : 1;
+// 	xstep = TILE_SIZE / tan(rayangle);
+// 	xstep *= (data->player.israyfacingl && xstep > 0) ? -1 : 1;
+// 	xstep *= (data->player.israyfacingl && xstep < 0) ? -1 : 1;
 
-	// ft_horizontal_ray();
-	double	nexthorztouchx = xintercept;
-	double	nexthorztouchy = yintercept;
-	double	foundhorzhit = 0;
-	double	wallhitx = 0;
-	double	wallhity = 0;
-	if (data->player.israyfacingu)
-		nexthorztouchy--;
-	while (nexthorztouchx >= 0 && nexthorztouchx <= WIDTH_WIN && nexthorztouchy >= 0 && nexthorztouchy <= LENGHT_WIN)
-	{
-		if (ft_has_wall(data, nexthorztouchx, nexthorztouchy))
-		{
-			foundhorzhit = 1;
-			wallhitx = nexthorztouchx;
-			wallhity = nexthorztouchy;
-			break ;
-		}
-		else
-		{
-			nexthorztouchx += xstep;
-			nexthorztouchy += ystep;
-		}
-	}
-}
+// 	// ft_horizontal_ray();
+// 	double	nexthorztouchx = xintercept;
+// 	double	nexthorztouchy = yintercept;
+// 	double	foundhorzhit = 0;
+// 	double	wallhitx = 0;
+// 	double	wallhity = 0;
+// 	if (data->player.israyfacingu)
+// 		nexthorztouchy--;
+// 	while (nexthorztouchx >= 0 && nexthorztouchx <= WIDTH_WIN && nexthorztouchy >= 0 && nexthorztouchy <= LENGHT_WIN)
+// 	{
+// 		if (ft_has_wall(data, nexthorztouchx, nexthorztouchy))
+// 		{
+// 			foundhorzhit = 1;
+// 			wallhitx = nexthorztouchx;
+// 			wallhity = nexthorztouchy;
+// 			break ;
+// 		}
+// 		else
+// 		{
+// 			nexthorztouchx += xstep;
+// 			nexthorztouchy += ystep;
+// 		}
+// 	}
+// }
 
 void	draw_ray(t_data *data, int x, int y, int color)
 {
@@ -150,8 +150,8 @@ void	draw_ray(t_data *data, int x, int y, int color)
 		- (data->player.fov_angle / 2);
 	while (i < data->player.num_ray)
 	{
-		data->player.ray_angle = ft_normalizeangle(data->player.ray_angle);
-		ft_raycast(data, data->player.ray_angle);
+		// data->player.ray_angle = ft_normalizeangle(data->player.ray_angle);
+		// ft_raycast(data, data->player.ray_angle);
 		j = 0;
 		while (j < 10)
 		{

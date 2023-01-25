@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/23 15:51:30 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:13:03 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	ft_color_and_floor(char **tab, t_data *data);
 void	ft_free(char	**tab);
 void	ft_convert_to_int(char **tab, t_data *data);
 void	ft_check_error_color(char **tab, t_data *data);
-//---------------------------------------------------------
+//---------------------------------------------------------//
 void	ft_passing_error(t_data *data, char *line);
 void	ft_parssing_map(t_data *data);
 void	ft_check_duplicat(t_data *data);
