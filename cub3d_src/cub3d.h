@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/24 12:13:03 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/27 20:07:55 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,17 @@ typedef struct s_player{
 	double	israyfacingr;
 }		t_player;
 
+typedef struct s_ray{
+	double	nexthorztouchx;
+	double	nexthorztouchy;
+	double	h_wallhitx;
+	double	h_wallhity;
+	double	xintercept;
+	double	yintercept;
+	double	xstep;
+	double	ystep;
+}		t_ray;
+
 typedef struct s_data{
 	char		**all_map;
 	char		**map_dir;
@@ -120,6 +131,7 @@ typedef struct s_data{
 	t_mlx		mlx;
 	t_img		img;
 	t_player	player;
+	t_ray		ray;
 }		t_data;
 
 char	*get_next_line(int fd);

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:59:01 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/25 20:37:04 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/27 16:41:56 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,82 +88,118 @@ void	draw_line(t_data *data, int x, int y, int color)
 	}
 }
 
-// double	ft_normalizeangle(double rayangle)
+double	ft_normalizeangle(double rayangle)
+{
+	rayangle = (int)rayangle % (int)(2 * M_PI);
+	if (rayangle < 0)
+		rayangle = (2 * M_PI) + rayangle;
+	return (rayangle);
+}
+
+// int	__ft_has_wall_(t_data *data, double x, double y)
 // {
-// 	rayangle = (int)rayangle % (int)(2 * M_PI);
-// 	if (rayangle < 0)
-// 		rayangle = (2 * M_PI) + rayangle;
-// 	return (rayangle);
+// 	double	mapx;
+// 	double	mapy;
+
+// 	if (x < 0 || x > WIDTH_WIN || y < 0 || y > LENGHT_WIN)
+// 		return (0);
+// 	mapx = floor(x / TILE_SIZE);
+// 	mapy = floor(y / TILE_SIZE);
+// 	if ((data->map[(int)mapx][(int)floor(data->player.j / TILE_SIZE)] != '0' \
+// 		&& data->map[(int)mapx][(int)floor(data->player.j / TILE_SIZE)] != 'N') \
+// 		&& (data->map[(int)floor(data->player.i / TILE_SIZE)][(int)mapy] != '0' \
+// 		&& data->map[(int)floor(data->player.i / TILE_SIZE)][(int)mapy] != 'N'))
+// 		return (1);
+// 	return (data->map[(int)mapx][(int)mapy] != '0' \
+// 		&& data->map[(int)mapx][(int)mapy] != 'N');
 // }
 
-// void	ft_raycast(t_data *data, double	rayangle)
+int	__ft_has_wall(t_data *data, double x, double y)
+{
+	double	mapx;
+	double	mapy;
+
+	if (x < 0 || x > WIDTH_WIN || y < 0 || y > LENGHT_WIN)
+		return (0);
+	mapx = floor(x / TILE_SIZE);
+	mapy = floor(y / TILE_SIZE);
+
+	return (data->map[(int)mapx][(int)mapy] != '0');
+}
+
+void	ft_horizontal_ray(t_data *data)
+{
+	double	nexthorztouchx = data->ray.xintercept;
+	double	nexthorztouchy = data->ray.yintercept;
+	double	foundhorzhit = 0;
+
+	if (data->player.israyfacingu)
+		nexthorztouchy--;
+	// we just increment xstep and ystep until we find a wall
+	while (nexthorztouchx > 0 && nexthorztouchx < WIDTH_WIN && nexthorztouchy > 0 && nexthorztouchy < LENGHT_WIN)
+	{
+		if (__ft_has_wall(data, nexthorztouchx, nexthorztouchy))
+		{
+			foundhorzhit = 1;
+			data->ray.h_wallhitx = nexthorztouchx;
+			data->ray.h_wallhity = nexthorztouchy;
+			break ;
+		}
+		else
+		{
+			nexthorztouchx += data->ray.xstep;
+			nexthorztouchy += data->ray.ystep;
+		}
+	}
+	// draw_line(data, data->player.i, data->player.j, 0x00ffffff);
+}
+
+void	ft_raycast(t_data *data, double	rayangle)
+{
+	rayangle = data->player.rotationangl - (data->player.fov_angle / 2.0);
+	// find the y-coordinat of the closest horizontal grid intersection
+	data->ray.yintercept = floor(data->player.j / TILE_SIZE) * TILE_SIZE;
+	// if the rayfacing down must add TILE_SIZE to yintercept if not don't do enything
+	data->ray.yintercept += data->player.israyfacingd ? TILE_SIZE : 0;
+	// find the x-coordinat of the closest horizontal grid intersection
+	data->ray.xintercept = data->player.i + (data->ray.yintercept - data->player.j) / tan(rayangle);
+	// calculat the xstep and ystep (next step)
+	data->ray.ystep = TILE_SIZE;
+	// increment or deincremenrt ystep of player 
+	data->ray.ystep *= data->player.israyfacingu ? -1 : 1;
+	data->ray.xstep = TILE_SIZE / tan(rayangle);
+	data->ray.xstep *= (data->player.israyfacingl && data->ray.xstep > 0) ? -1 : 1;
+	data->ray.xstep *= (data->player.israyfacingl && data->ray.xstep < 0) ? -1 : 1;
+	ft_horizontal_ray(data);
+}
+
+// void	draw_ray(t_data *data, int x, int y, int color)
 // {
-// 	double	xintercept;
-// 	double	yintercept;
-// 	double	xstep;
-// 	double	ystep;
+// 	double	i;
+// 	double	j;
+// 	double	x1;
+// 	double	y1;
 
-// 	yintercept = floor(data->player.j / TILE_SIZE) * TILE_SIZE;
-// 	yintercept += data->player.israyfacingd ? TILE_SIZE : 0;
-// 	xintercept = data->player.i + (yintercept - data->player.j) / tan(rayangle);
-// 	ystep = TILE_SIZE;
-// 	ystep *= data->player.israyfacingu ? -1 : 1;
-// 	xstep = TILE_SIZE / tan(rayangle);
-// 	xstep *= (data->player.israyfacingl && xstep > 0) ? -1 : 1;
-// 	xstep *= (data->player.israyfacingl && xstep < 0) ? -1 : 1;
-
-// 	// ft_horizontal_ray();
-// 	double	nexthorztouchx = xintercept;
-// 	double	nexthorztouchy = yintercept;
-// 	double	foundhorzhit = 0;
-// 	double	wallhitx = 0;
-// 	double	wallhity = 0;
-// 	if (data->player.israyfacingu)
-// 		nexthorztouchy--;
-// 	while (nexthorztouchx >= 0 && nexthorztouchx <= WIDTH_WIN && nexthorztouchy >= 0 && nexthorztouchy <= LENGHT_WIN)
+// 	j = 0;
+// 	i = 0;
+// 	data->player.ray_angle = data->player.rotationangl \
+// 		- (data->player.fov_angle / 2);
+// 	// data->player.ray_angle = ft_normalizeangle(data->player.ray_angle);
+// 	// ft_raycast(data, data->player.ray_angle);
+// 	while (i < data->player.num_ray)
 // 	{
-// 		if (ft_has_wall(data, nexthorztouchx, nexthorztouchy))
+// 		j = 0;
+// 		while (j < 10)
 // 		{
-// 			foundhorzhit = 1;
-// 			wallhitx = nexthorztouchx;
-// 			wallhity = nexthorztouchy;
-// 			break ;
+// 			x1 = j * cos(data->player.ray_angle) * data->player.h_wallhitx;
+// 			y1 = j * sin(data->player.ray_angle) * data->player.h_wallhity;
+// 			my_mlx_pixel_put(data, y + y1, x + x1, color);
+// 			j += 0.1;
 // 		}
-// 		else
-// 		{
-// 			nexthorztouchx += xstep;
-// 			nexthorztouchy += ystep;
-// 		}
+// 		data->player.ray_angle += data->player.fov_angle / data->player.num_ray;
+// 		i++;
 // 	}
 // }
-
-void	draw_ray(t_data *data, int x, int y, int color)
-{
-	double	i;
-	double	j;
-	double	x1;
-	double	y1;
-
-	j = 0;
-	i = 0;
-	data->player.ray_angle = data->player.rotationangl \
-		- (data->player.fov_angle / 2);
-	while (i < data->player.num_ray)
-	{
-		// data->player.ray_angle = ft_normalizeangle(data->player.ray_angle);
-		// ft_raycast(data, data->player.ray_angle);
-		j = 0;
-		while (j < 10)
-		{
-			x1 = j * cos(data->player.ray_angle) * 10;
-			y1 = j * sin(data->player.ray_angle) * 10;
-			my_mlx_pixel_put(data, y + y1, x + x1, color);
-			j += 0.1;
-		}
-		data->player.ray_angle += data->player.fov_angle / data->player.num_ray;
-		i++;
-	}
-}
 
 void	ft_data_player(t_data *data)
 {
@@ -187,4 +223,5 @@ void	ft_data_player(t_data *data)
 		}
 		i++;
 	}
+	ft_raycast(data, 0);
 }

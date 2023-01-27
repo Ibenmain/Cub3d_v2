@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/23 00:32:30 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/27 20:42:28 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_init_player(t_data *data)
 {
 	double	ray_angl;
+	
 
 	ray_angl = data->player.rotationangl \
 		- (data->player.fov_angle / 2);
@@ -29,12 +30,16 @@ void	ft_init_player(t_data *data)
 	data->player.wallhitx = 0;
 	data->player.wallhity = 0;
 	data->player.distanc = 0;
+	//check ray facing of player
 	data->player.israyfacingd = ray_angl > 0 && ray_angl < M_PI;
 	data->player.israyfacingu = !data->player.israyfacingd;
 	data->player.israyfacingr = ray_angl < 0.5 * M_PI || ray_angl > 1.5 * M_PI;
 	data->player.israyfacingl = !data->player.israyfacingr;
+	//postion of player
 	data->player.i = -1;
 	data->player.j = -1;
+	data->player.wallhitx = 0;
+	data->player.wallhity = 0;
 }
 
 int	ft_mlx_wind(t_data *data)
