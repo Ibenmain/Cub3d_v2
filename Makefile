@@ -14,7 +14,7 @@ OBJS = $(SRCS:.c=.o)
 all:$(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
+	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^ 
 
 %.o: %.c $(INC)
 	$(CC) $(CFLAGS) -c $< -o $@

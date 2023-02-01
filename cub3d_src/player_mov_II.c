@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:07:00 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/25 13:30:40 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:43:44 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int	ft_player_movement(t_data *data)
 	if (data->player.turndirection == 1)
 		data->player.rotationangl += data->player.rotationspeed \
 			* data->player.turndirection;
+	data->player.rotationangl = fmod(data->player.rotationangl, (2 * M_PI));
+	if (data->player.rotationangl < 0)
+		data->player.rotationangl += (2 * M_PI);
 	ft_put_image_to_win(data);
 	return (0);
 }

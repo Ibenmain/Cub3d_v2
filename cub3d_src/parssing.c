@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:43:50 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/20 16:10:31 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:26:32 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,19 @@ void	ft_passing_error(t_data *data, char *line)
 	int		size;
 
 	len = ft_strlen(line);
-	if (line[0] == '\n' || line[len - 2] == ' ')
-		ft_print_error("Error: invalid a map", data);
+	if (line[len - 2] == ' ')
+		ft_print_error("Error: invalid a map\n", data);
 	tab = ft_split(line, ' ');
 	size = ft_check_error_tab(tab);
 	if (size != 2)
-		ft_print_error("Error: invalid map", data);
+		ft_print_error("Error: invalid map\n", data);
 	if (ft_strlen(tab[0]) == 2)
 		ft_directione(tab, data);
 	else if (ft_strlen(tab[0]) == 1)
 		ft_color_and_floor(tab, data);
 	else
-		ft_print_error("Error: invalid map", data);
+		ft_print_error("Error: invalid map\n", data);
+	ft_free(tab);
 }
 
 void	ft_check_duplicat(t_data *data)
@@ -90,5 +91,5 @@ void	ft_check_duplicat(t_data *data)
 	if (data->map1.no_dup != 1 || data->map1.so_dup != 1 || data->map1.we_dup \
 		!= 1 || data->map1.ea_dup != 1 || data->map1.c_dup != 1 \
 		|| data->map1.f_dup != 1)
-		ft_print_error("Error: some texture duplicated", data);
+		ft_print_error("Error: Error: invalid map\n", data);
 }
