@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 00:02:29 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/15 22:50:06 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:45:25 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_divide_down_map(t_data *data)
 	data->map = (char **)malloc(sizeof(char *) * \
 		((data->line_map - data->i) + 1));
 	if (!data->map)
-		ft_print_error("Error allocation", data);
+		ft_print_error("Error allocation\n", data);
 	data->j = 0;
 	while (data->all_map[data->i])
 	{

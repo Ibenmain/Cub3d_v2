@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/27 20:07:55 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:57:19 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define D 2
 # define ESC 53
 
-# define LENGHT_WIN 1400
-# define WIDTH_WIN 800
+# define WIDTH_WIN 1920
+# define HEIGHT_WIN 1080
 # define TILE_SIZE 30
 # define TURNDIRECTION 0
 # define WALKDIRECTION 0
@@ -69,10 +69,10 @@ typedef struct s_img {
 }				t_img;
 
 typedef struct s_dir{
-	int		n;
-	int		s;
-	int		w;
-	int		e;
+	char	n;
+	char	s;
+	char	w;
+	char	e;
 	int		x;
 }		t_dir;
 
@@ -82,35 +82,42 @@ typedef struct s_mlx{
 }		t_mlx;
 
 typedef struct s_player{
-	double	i;
-	double	j;
-	double	rotationangl;
-	double	walkdirection;
+	double	pos_x;
+	double	pos_y;
+	double	rotationangl; // related to view direction of player ()
 	double	sidedirection;
-	double	turndirection;
-	double	rotationspeed;
-	double	movespeed;
+	double	walkdirection; // -1 if back, 1 if front
+	double	turndirection; // -1 if left, 1 if right
+	double	rotationspeed; // speed you want player turn to left or right
+	double	movespeed; // speed of player
 	double	fov_angle;
 	double	num_ray;
 	double	ray_angle;
-	double	wallhitx;
-	double	wallhity;
+	double	wall_hit_x;
+	double	wall_hit_y;
 	double	distanc;
-	double	israyfacingd;
-	double	israyfacingu;
-	double	israyfacingl;
-	double	israyfacingr;
+	double	is_rayfacing_down;
+	double	is_rayfacing_up;
+	double	is_rayfacing_left;
+	double	is_rayfacing_right;
 }		t_player;
 
 typedef struct s_ray{
-	double	nexthorztouchx;
-	double	nexthorztouchy;
-	double	h_wallhitx;
-	double	h_wallhity;
-	double	xintercept;
-	double	yintercept;
-	double	xstep;
-	double	ystep;
+	double	next_hor_x;
+	double	next_hor_y;
+	double	found_wall_h;
+	double	wall_hit_hor_x;
+	double	wall_hit_hor_y;
+	double	xintercept_hor;
+	double	yintercept_hor;
+	//*********************************//
+	double	next_ver_x;
+	double	next_ver_y;
+	double	found_wall_v;
+	double	wall_hit_ver_x;
+	double	wall_hit_ver_y;
+	double	xintercept_ver;
+	double	yintercept_ver;
 }		t_ray;
 
 typedef struct s_data{
@@ -167,12 +174,13 @@ int		ft_mlx_wind(t_data *data);
 int		get_line_map(t_data *data);
 int		ft_check_spase(char *line);
 int		get_line_map(t_data *data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color); 
+void	my_mlx_pixel_put1(t_data *data, int x, int y, int color); 
 void	draw_rectangle(int x, int y, t_data *data, int color);
 int		ft_put_image_to_win(t_data *data);
 void	draw_circle(t_data *data, int x, int y, int r);
 void	draw_line(t_data *data, int x, int y, int color);
-void	draw_ray(t_data *data, int x, int y, int color);
+void	draw_ray(t_data *data, int x, int y, int color, double rayangle);
 void	ft_initialisation_var(t_data *data);
 void	ft_data_player(t_data *data);
 int		ft_player_movement(t_data *data);
@@ -186,4 +194,6 @@ void	ft_player_right(t_data *data);
 void	ft_player_up(t_data *data);
 void	ft_player_down(t_data *data);
 int		ft_has_wall(t_data *data, double x, double y);
+void	DDA(double X0, double Y0, double X1, double Y1, t_data *data);
+double	ft_normalizeangle(double rayangle);
 #endif

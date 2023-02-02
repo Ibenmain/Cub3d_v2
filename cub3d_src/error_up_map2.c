@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:37:57 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/20 16:15:25 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:24:51 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ void	ft_range_of_color(char *line, t_data *data)
 	len = ft_check_error_tab(tab);
 	if (len != 3)
 		ft_print_error("Error: the number of RGB\
- must be three separated by comma", data);
+ must be three separated by comma\n", data);
 	data->val1 = ft_atoi(tab[0]);
 	data->val2 = ft_atoi(tab[1]);
 	data->val3 = ft_atoi(tab[2]);
+	free(path);
+	ft_free(tab);
 }
 
 void	ft_color_and_floor(char **tab, t_data *data)
@@ -66,7 +68,7 @@ char	*ft_duplicat(char *str, t_data *data)
 
 	tab = (char *)malloc(sizeof(char *) * data->biggest_line + 1);
 	if (!tab)
-		ft_print_error("error allocation", data);
+		ft_print_error("error allocation\n", data);
 	i = 0;
 	while (str[i] != '\n')
 	{
@@ -86,7 +88,7 @@ char	*ft_dup_with_space(char *line, t_data *data)
 
 	tab = (char *)malloc(sizeof(char *) * data->biggest_line + 1);
 	if (!tab)
-		ft_print_error("error allocation", data);
+		ft_print_error("error allocation\n", data);
 	i = 0;
 	while (line[i])
 	{

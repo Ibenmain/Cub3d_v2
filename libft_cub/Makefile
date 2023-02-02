@@ -6,7 +6,7 @@
 #    By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/01 21:11:52 by ibenmain          #+#    #+#              #
-#    Updated: 2023/01/10 14:37:20 by ibenmain         ###   ########.fr        #
+#    Updated: 2023/01/28 22:28:07 by ibenmain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ B_SRCS = ft_lstnew.c\
 OBJS = $(SRCS:.c=.o)
 B_OBJS = $(B_SRCS:.c=.o)
 CFLAGS = -Wall -Werror -Wextra
-CC = gcc
+CC = cc
 RM = rm -f
 AR = @ar -rcs
 
