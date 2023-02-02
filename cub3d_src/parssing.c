@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parssing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:43:50 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/20 16:10:31 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:19:42 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_check_path(char **tab, t_data *data)
 	return (path);
 }
 
-void	ft_directione(char **tab, t_data *data)
+void	     ft_directione(char **tab, t_data *data)
 {
 	if (!ft_strcmp(tab[0], "NO"))
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_directions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 22:43:33 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/20 16:13:35 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/01/31 12:38:44 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_parssing_map(t_data *data)
 	while (data->all_map[data->i])
 	{
 		j = 0;
-		if (ft_check_line(data->all_map[data->i]))
+		if (ft_check_line(data->all_map[data->i])) ////
 			break ;
 		else if (data->all_map[data->i][0] != '\n')
 		{
