@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/01 19:57:19 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/04 23:56:20 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 # define WIDTH_WIN 1920
 # define HEIGHT_WIN 1080
-# define TILE_SIZE 30
+# define TILE_SIZE 12
 # define TURNDIRECTION 0
 # define WALKDIRECTION 0
 # define MOVESPEED 2.0  
@@ -174,13 +174,12 @@ int		ft_mlx_wind(t_data *data);
 int		get_line_map(t_data *data);
 int		ft_check_spase(char *line);
 int		get_line_map(t_data *data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color); 
-void	my_mlx_pixel_put1(t_data *data, int x, int y, int color); 
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put1(t_data *data, int x, int y, int color);
 void	draw_rectangle(int x, int y, t_data *data, int color);
 int		ft_put_image_to_win(t_data *data);
 void	draw_circle(t_data *data, int x, int y, int r);
 void	draw_line(t_data *data, int x, int y, int color);
-void	draw_ray(t_data *data, int x, int y, int color, double rayangle);
 void	ft_initialisation_var(t_data *data);
 void	ft_data_player(t_data *data);
 int		ft_player_movement(t_data *data);
@@ -194,6 +193,15 @@ void	ft_player_right(t_data *data);
 void	ft_player_up(t_data *data);
 void	ft_player_down(t_data *data);
 int		ft_has_wall(t_data *data, double x, double y);
-void	DDA(double X0, double Y0, double X1, double Y1, t_data *data);
 double	ft_normalizeangle(double rayangle);
+void	ft_ray_cast_hor(t_data *data, double ray_angle);
+void	ft_ray_cast_ver(t_data *data, double ray_angle);
+void	draw_circle(t_data *data, int x, int y, int color);
+void	draw_rectangle(int x, int y, t_data *data, int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	ft_draw_map(t_data *data);
+void	DDA(double X0, double Y0, double X1, double Y1, t_data *data);
+void	ft_cast_rays(t_data *data);
+int _is_wall(double next_hor_x, double next_hor_y, t_data *data);
+
 #endif

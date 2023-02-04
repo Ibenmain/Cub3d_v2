@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:04:15 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/30 21:25:46 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:57:17 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ int	ft_has_wall(t_data *data, double x, double y)
 	double	mapx;
 	double	mapy;
 
-	if (x < 0 || x > HEIGHT_WIN || y < 0 || y > WIDTH_WIN)
+	if (x < 0 || x > data->len * TILE_SIZE \
+		|| y < 0 || y > data->line_max * TILE_SIZE)
 		return (0);
 	mapx = floor(x / TILE_SIZE);
 	mapy = floor(y / TILE_SIZE);
-	if ((data->map[(int)mapx][(int)floor(data->player.pos_x / TILE_SIZE)] != '0' \
-		&& data->map[(int)mapx][(int)floor(data->player.pos_x / TILE_SIZE)] != 'N') \
-		&& (data->map[(int)floor(data->player.pos_y / TILE_SIZE)][(int)mapy] != '0' \
-		&& data->map[(int)floor(data->player.pos_y / TILE_SIZE)][(int)mapy] != 'N'))
+	if ((data->map[(int)mapx][(int)floor(data->player.pos_x / TILE_SIZE)] \
+		!= '0' && data->map[(int)mapx][(int)floor(data->player.pos_x / \
+		TILE_SIZE)] != 'N') && (data->map[(int)floor(data->player.pos_y / \
+		TILE_SIZE)][(int)mapy] != '0' && data->map[(int)floor(data->player. \
+		pos_y / TILE_SIZE)][(int)mapy] != 'N'))
 		return (1);
 	return (data->map[(int)mapx][(int)mapy] != '0' \
 		&& data->map[(int)mapx][(int)mapy] != 'N');
@@ -80,7 +82,6 @@ void	ft_player_up(t_data *data)
 
 void	ft_player_down(t_data *data)
 {
-
 	double	movestep;
 	double	newposx;
 	double	newposy;

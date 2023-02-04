@@ -4,11 +4,12 @@ LIBFT = ./libft_cub/libft.a
 CFLAGS = -Wall -Werror -Wextra 
 CC = cc
 RM = rm -rf
-SRCS = cub3d_src/main.c cub3d_src/get_next_line.c cub3d_src/get_next_line_utils.c\
+SRCS = cub3d_src/main.c cub3d_src/get_next_line.c cub3d_src/get_next_line_utils.c \
 		cub3d_src/error_up_map.c cub3d_src/error_up_map1.c cub3d_src/error_up_map2.c \
-		cub3d_src/parssing.c cub3d_src/error_redirection.c cub3d_src/error_directions.c\
+		cub3d_src/parssing.c cub3d_src/error_redirection.c cub3d_src/error_directions.c \
 		cub3d_src/cub3d.c cub3d_src/mlx.c cub3d_src/player.c cub3d_src/player_movement.c \
-		cub3d_src/mlx_hook.c cub3d_src/player_mov_II.c
+		cub3d_src/mlx_hook.c cub3d_src/player_mov_II.c cub3d_src/horizontale.c cub3d_src/verticale.c \
+		cub3d_src/draw.c cub3d_src/raycast.c
 OBJS = $(SRCS:.c=.o)
 
 all:$(NAME)

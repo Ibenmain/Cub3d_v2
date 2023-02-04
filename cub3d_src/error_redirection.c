@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 22:11:02 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/28 17:28:21 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:18:54 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_check_character(char c, t_data *data)
 	{
 		data->dir.x += 1;
 		data->dir.n += c;
-		
 	}
 	else if (c == 'S')
 	{

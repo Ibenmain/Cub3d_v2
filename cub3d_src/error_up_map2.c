@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_up_map2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:37:57 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/02 16:53:15 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:24:51 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,6 @@ void	ft_initialisation_var(t_data *data)
 	data->map1.c_dup = 0;
 }
 
-int	ft_check_virgule(char *path)
-{
-	int	i;
-	int	c;
-
-	i = 0;
-	c = 0;
-	while (path[i])
-	{
-		if (path[i] == ',')
-			c += 1;
-		i++;
-	}
-	return (c);
-}
-
 void	ft_range_of_color(char *line, t_data *data)
 {
 	char	**tab;
@@ -45,8 +29,6 @@ void	ft_range_of_color(char *line, t_data *data)
 	int		len;
 
 	path = ft_strcpy(line);
-	if (ft_check_virgule(path) != 2)
-		ft_print_error("Error: invalid map\n", data);
 	tab = ft_split(path, ',');
 	ft_check_error_color(tab, data);
 	ft_convert_to_int(tab, data);
@@ -86,7 +68,7 @@ char	*ft_duplicat(char *str, t_data *data)
 
 	tab = (char *)malloc(sizeof(char *) * data->biggest_line + 1);
 	if (!tab)
-		ft_print_error("Error allocation\n", data);
+		ft_print_error("error allocation\n", data);
 	i = 0;
 	while (str[i] != '\n')
 	{
@@ -106,7 +88,7 @@ char	*ft_dup_with_space(char *line, t_data *data)
 
 	tab = (char *)malloc(sizeof(char *) * data->biggest_line + 1);
 	if (!tab)
-		ft_print_error("Error allocation\n", data);
+		ft_print_error("error allocation\n", data);
 	i = 0;
 	while (line[i])
 	{

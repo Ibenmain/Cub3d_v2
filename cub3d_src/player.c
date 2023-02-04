@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:59:01 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/27 16:41:56 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:33:06 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,6 @@ int	key_release(int keycode, t_data *data)
 	else if (keycode == D)
 		data->player.sidedirection = 0;
 	return (0);
-}
-
-void	draw_circle(t_data *data, int x, int y, int color)
-{
-	double	i;
-	double	j;
-	double	angle;
-	double	x1;
-	double	y1;
-
-	j = 0;
-	while (j < 5)
-	{
-		i = 0;
-		while (i < 360)
-		{
-			angle = i;
-			x1 = j * cos(angle * M_PI / 180);
-			y1 = j * sin(angle * M_PI / 180);
-			my_mlx_pixel_put(data, y + y1, x + x1, color);
-			i += 0.1;
-		}
-		j += 0.1;
-	}
 }
 
 void	draw_line(t_data *data, int x, int y, int color)
