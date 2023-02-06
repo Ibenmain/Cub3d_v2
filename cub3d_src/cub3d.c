@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/04 23:56:35 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:28:51 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_init_player(t_data *data)
 	data->player.pos_y = -1;
 	data->player.wall_hit_x = 0;
 	data->player.wall_hit_y = 0;
+	//allocate the total amount of bytes in memory to hold our color buffer
+	// data->colorbuffer = malloc(sizeof(char) * WIDTH_WIN * HEIGHT_WIN);
 }
 
 int	ft_mlx_wind(t_data *data)
@@ -43,8 +45,12 @@ int	ft_mlx_wind(t_data *data)
 	data->img.addr = mlx_get_data_addr(data->img.img, \
 		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	ft_mlx_loop(data);
+	
 	return (0);
 }
+
+
+
 
 void	ft_cub3d(t_data *data)
 {

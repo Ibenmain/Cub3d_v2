@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_redirection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 22:11:02 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/04 11:18:54 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:08:15 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_check_character(char c, t_data *data)
 	if (c == 'N')
 	{
 		data->dir.x += 1;
-		data->dir.n += c;
+		data->dir.n += 1;
 	}
 	else if (c == 'S')
 	{
