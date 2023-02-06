@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/04 12:00:44 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:25:01 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ int	get_line_map(t_data *data)
 	return (line);
 }
 
-void	my_mlx_pixel_put1(t_data *data, int x, int y, int color)
-{
-	char	*dst;
+// void	my_mlx_pixel_put1(t_data *data, int x, int y, int color)
+// {
+// 	char	*dst;
 
-	if (x >= 0 && x < data->line_max * TILE_SIZE \
-		&& y >= 0 && y < data->len * TILE_SIZE)
-	{
-		dst = data->img.addr + (y * data->img.line_length + x * \
-			(data->img.bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
-}
+// 	if (x >= 0 && x < data->line_max * TILE_SIZE \
+// 		&& y >= 0 && y < data->len * TILE_SIZE)
+// 	{
+// 		dst = data->img.addr + (y * data->img.line_length + x * \
+// 			(data->img.bits_per_pixel / 8));
+// 		*(unsigned int *)dst = color;
+// 	}
+// }
 
 void	DDA(double X0, double Y0, double X1, double Y1, t_data *data)
 {
@@ -73,7 +73,7 @@ void	DDA(double X0, double Y0, double X1, double Y1, t_data *data)
 	x = X0;
 	y = Y0;
     for (int i = 0; i <= steps ; i++) {
-        my_mlx_pixel_put1(data, round(x), round(y), 0xFF0000);
+        my_mlx_pixel_put(data, round(x), round(y), 0xFFFFCC);
         x += xIncrement; 
         y += yIncrement;		
     }
@@ -81,9 +81,13 @@ void	DDA(double X0, double Y0, double X1, double Y1, t_data *data)
 
 int	ft_put_image_to_win(t_data *data)
 {
-	ft_draw_map(data);
-	draw_circle(data, data->player.pos_y, data->player.pos_x, 0x00000000);
+	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \
+		* TILE_SIZE, data->len * TILE_SIZE);
+	data->img.addr = mlx_get_data_addr(data->img.img, \
+		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	// draw_line(data, data->player.pos_y, data->player.pos_x, 0x000000);
+	ft_draw_map(data);
+	draw_circle(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
 	ft_cast_rays(data);
 	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, \
 		data->img.img, 0, 0);
