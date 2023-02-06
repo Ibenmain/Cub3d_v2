@@ -6,7 +6,7 @@
 /*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/06 22:28:51 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:30:22 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_init_player(t_data *data)
 {
-	data->player.rotationangl = M_PI_2;
-	data->player.movespeed = 1.5;
+	data->player.rotationangl = 3 * M_PI_2;
+	data->player.movespeed = 2;
 	data->player.walkdirection = 0;
 	data->player.sidedirection = 0;
 	data->player.turndirection = 0;
@@ -40,10 +40,23 @@ int	ft_mlx_wind(t_data *data)
 		WIDTH_WIN, HEIGHT_WIN, "./cub3d");
 	if (!data->mlx.mlx_win)
 		return (-1);
-	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \
-		* TILE_SIZE, data->len * TILE_SIZE);
-	data->img.addr = mlx_get_data_addr(data->img.img, \
-		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
+	data->img1.img1 = mlx_new_image(data->mlx.mx, WIDTH_WIN, HEIGHT_WIN);
+	data->img1.addr1 = mlx_get_data_addr(data->img1.img1, \
+		&data->img1.bits_per_pixel1, &data->img1.line_length1, &data->img1.endian1);
+	int i = 0;
+	int j;
+	while (i < HEIGHT_WIN)
+	{
+		j = 0;
+		while (j < WIDTH_WIN)
+		{
+			my_mlx_pixel_put1(data, j, i, 0xFFFFFF);
+			j++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img1.img1, 0, 0);
+	
 	ft_mlx_loop(data);
 	
 	return (0);

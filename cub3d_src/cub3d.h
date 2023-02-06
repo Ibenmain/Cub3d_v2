@@ -6,7 +6,7 @@
 /*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/06 22:28:57 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:30:07 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 # define WIDTH_WIN 1920
 # define HEIGHT_WIN 1080
-# define TILE_SIZE 12
+# define TILE_SIZE 10
 # define TURNDIRECTION 0
 # define WALKDIRECTION 0
 # define MOVESPEED 2.0  
@@ -67,6 +67,14 @@ typedef struct s_img {
 	int		line_length;
 	int		endian;
 }				t_img;
+
+typedef struct s_img1 {
+	void	*img1;
+	char	*addr1;
+	int		bits_per_pixel1;
+	int		line_length1;
+	int		endian1;
+}				t_img1;
 
 typedef struct s_dir{
 	char	n;
@@ -138,6 +146,7 @@ typedef struct s_data{
 	t_dir		dir;
 	t_mlx		mlx;
 	t_img		img;
+	t_img1		img1;
 	t_player	player;
 	t_ray		ray;
 }		t_data;
