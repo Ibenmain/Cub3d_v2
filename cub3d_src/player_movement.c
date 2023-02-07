@@ -6,11 +6,11 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:04:15 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/04 11:57:17 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/07 20:19:48 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 int	ft_has_wall(t_data *data, double x, double y)
 {

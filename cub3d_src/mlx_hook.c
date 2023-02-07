@@ -6,11 +6,11 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:55:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/06 17:08:02 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/07 20:20:27 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 void	ft_mlx_loop(t_data *data)
 {

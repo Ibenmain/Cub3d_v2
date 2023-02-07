@@ -6,11 +6,11 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:22:43 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/04 23:49:19 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:02:06 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 int _is_wall(double next_hor_x, double next_hor_y, t_data *data)
 {

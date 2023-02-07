@@ -6,11 +6,11 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:30:58 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/06 22:24:07 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:02:01 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 void	my_mlx_pixel_put1(t_data *data, int x, int y, int color)
 {

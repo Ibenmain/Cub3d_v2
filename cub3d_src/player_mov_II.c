@@ -6,11 +6,11 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:07:00 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/01 16:43:44 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:01:47 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 int	ft_player_movement(t_data *data)
 {

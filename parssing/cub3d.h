@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/06 22:30:07 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/07 20:20:14 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,18 @@ typedef struct s_ray{
 	double	yintercept_ver;
 }		t_ray;
 
+typedef struct s_rays{
+	double	distance;
+	double	pos_ray_x;
+	double	pos_ray_y;
+	double	ray_angle;
+	int		ver_hor;
+	int		dir_up;
+	int		dir_down;
+	int		dir_left;
+	int		dir_right;
+}		t_rays;
+
 typedef struct s_data{
 	char		**all_map;
 	char		**map_dir;
@@ -141,6 +153,9 @@ typedef struct s_data{
 	int			val1;
 	int			val2;
 	int			val3;
+	double		perp_disc;
+	double		disc_proj_plane;
+	double		proj_wall_height;
 	// char *colorbuffer;
 	t_map1		map1;
 	t_dir		dir;
@@ -149,6 +164,7 @@ typedef struct s_data{
 	t_img1		img1;
 	t_player	player;
 	t_ray		ray;
+	t_rays		*rays;
 }		t_data;
 
 char	*get_next_line(int fd);
@@ -212,6 +228,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_draw_map(t_data *data);
 void	DDA(double X0, double Y0, double X1, double Y1, t_data *data);
 void	ft_cast_rays(t_data *data);
-int _is_wall(double next_hor_x, double next_hor_y, t_data *data);
+int		_is_wall(double next_hor_x, double next_hor_y, t_data *data);
 
 #endif

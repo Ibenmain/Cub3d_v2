@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:39 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/03 20:52:37 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:12:50 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	main(int ac, char **av)
 	// free(data->map1.ea_path);
 	// ft_free(data->all_map);
 	// ft_free(data->map);
+	// ft_free(data->rays);
 	// free(data);
 	return (0);
 }

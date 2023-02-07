@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   horizontale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:22:28 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/05 18:27:55 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:01:56 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 int ___is_wall(double next_hor_y, double next_hor_x, t_data *data)
 {

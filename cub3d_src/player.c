@@ -6,11 +6,11 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:59:01 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/06 15:25:19 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/07 20:01:46 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 int	key_pressed(int keycode, t_data *data)
 {
@@ -55,7 +55,7 @@ void	draw_line(t_data *data, int x, int y, int color)
 	double	y1;
 
 	j = 0;
-	while (j < 15)
+	while (j < 10)
 	{
 		x1 = j * sin(data->player.rotationangl);
 		y1 = j * cos(data->player.rotationangl);

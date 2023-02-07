@@ -1,12 +1,12 @@
 NAME = cub3d
-INC = cub3d_src/cub3d.h
+INC = parssing/cub3d.h
 LIBFT = ./libft_cub/libft.a
 CFLAGS = -Wall -Werror -Wextra 
 CC = cc
 RM = rm -rf
-SRCS = cub3d_src/main.c cub3d_src/get_next_line.c cub3d_src/get_next_line_utils.c \
-		cub3d_src/error_up_map.c cub3d_src/error_up_map1.c cub3d_src/error_up_map2.c \
-		cub3d_src/parssing.c cub3d_src/error_redirection.c cub3d_src/error_directions.c \
+SRCS = parssing/main.c parssing/get_next_line.c parssing/get_next_line_utils.c \
+		parssing/error_up_map.c parssing/error_up_map1.c parssing/error_up_map2.c \
+		parssing/parssing.c parssing/error_redirection.c parssing/error_directions.c \
 		cub3d_src/cub3d.c cub3d_src/mlx.c cub3d_src/player.c cub3d_src/player_movement.c \
 		cub3d_src/mlx_hook.c cub3d_src/player_mov_II.c cub3d_src/horizontale.c cub3d_src/verticale.c \
 		cub3d_src/draw.c cub3d_src/raycast.c

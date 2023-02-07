@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/06 22:29:33 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/07 20:37:19 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../parssing/cub3d.h"
 
 int	ft_check_spase(char *line)
 {
@@ -79,17 +79,80 @@ void	DDA(double X0, double Y0, double X1, double Y1, t_data *data)
     }
 }
 
+void	draw_rect(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0 ;
+	while (i < data->len * TILE_SIZE)
+	{
+		j = 0;
+		while (j < (data->line_max - 1) * TILE_SIZE)
+		{
+			if (i == 0 || i + 1== (data->len) * TILE_SIZE)
+				my_mlx_pixel_put(data, j, i, 0x000000);
+			if (j == 0 || j + 1 == (data->line_max - 1) * TILE_SIZE)
+				my_mlx_pixel_put(data, j, i, 0x000000);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	generate_projection(t_data *data)
+{
+	int	i;
+	int	j;
+	int	wall_strip_height;
+	int	wall_top_pixl;
+	int	wall_botton_pixl;
+	
+	i = 0;
+	while (i < data->player.num_ray)
+	{
+		data->perp_disc = data->rays[i].distance * cos(data->rays[i].ray_angle - data->player.rotationangl);
+		data->disc_proj_plane = (WIDTH_WIN / 2) / tan(data->player.fov_angle / 2);
+		data->proj_wall_height = (TILE_SIZE / data->perp_disc) * data->disc_proj_plane;
+		wall_strip_height = (int)data->proj_wall_height;
+		wall_top_pixl = (HEIGHT_WIN / 2) - (wall_strip_height / 2);
+		wall_top_pixl = wall_top_pixl < 0 ? 0 : wall_top_pixl;
+		wall_botton_pixl = (HEIGHT_WIN / 2) + (wall_strip_height / 2);
+		wall_botton_pixl = wall_botton_pixl > HEIGHT_WIN ? HEIGHT_WIN : wall_botton_pixl;
+		j = wall_top_pixl - 1;
+		while (j++ < wall_botton_pixl)
+			my_mlx_pixel_put1(data,i, j ,0xFFFFFF);
+		i++;
+	}
+}
+
 int	ft_put_image_to_win(t_data *data)
 {
+	int i;
+	int j;
+
+	i = -1;
+	while (i++ < HEIGHT_WIN)
+	{
+		j = -1;
+		while (++j < WIDTH_WIN)
+		{
+			my_mlx_pixel_put1(data, j, i, 0x000000);
+		}
+		
+	}
+	
 	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \
 		* TILE_SIZE, data->len * TILE_SIZE);
 	data->img.addr = mlx_get_data_addr(data->img.img, \
 		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
-	// draw_line(data, data->player.pos_y, data->player.pos_x, 0x000000);
+	generate_projection(data);
 	ft_draw_map(data);
 	draw_circle(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
 	ft_cast_rays(data);
-	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, \
-		data->img.img, 0, 0);
+	draw_rect(data);
+	draw_line(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
+	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img1.img1, 0, 0);
+	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img.img, 0, 0);
 	return (0);
 }
