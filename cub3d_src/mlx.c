@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 20:37:19 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:46:31 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	generate_projection(t_data *data)
 	int	wall_strip_height;
 	int	wall_top_pixl;
 	int	wall_botton_pixl;
-	
+
 	i = 0;
 	while (i < data->player.num_ray)
 	{
@@ -141,7 +141,7 @@ int	ft_put_image_to_win(t_data *data)
 		}
 		
 	}
-	
+
 	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \
 		* TILE_SIZE, data->len * TILE_SIZE);
 	data->img.addr = mlx_get_data_addr(data->img.img, \
