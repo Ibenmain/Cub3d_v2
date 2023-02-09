@@ -6,7 +6,7 @@
 /*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/08 18:46:31 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/09 15:13:44 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	generate_projection(t_data *data)
 	}
 }
 
-int	ft_put_image_to_win(t_data *data)
+void	ft_mlx_clear_window(t_data *data)
 {
 	int i;
 	int j;
@@ -136,9 +136,7 @@ int	ft_put_image_to_win(t_data *data)
 	{
 		j = -1;
 		while (++j < WIDTH_WIN)
-		{
 			my_mlx_pixel_put1(data, j, i, 0x000000);
-		}
 		
 	}
 
