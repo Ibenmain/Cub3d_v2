@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:37:57 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/28 22:24:51 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:58:20 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,21 @@ void	ft_initialisation_var(t_data *data)
 	data->map1.f_dup = 0;
 	data->map1.c_dup = 0;
 }
+int	ft_check_virgule(char *path)
+{
+	int	i;
+	int	c;
 
+	i = 0;
+	c = 0;
+	while (path[i])
+	{
+		if (path[i] == ',')
+			c += 1;
+		i++;
+	}
+	return (c);
+}
 void	ft_range_of_color(char *line, t_data *data)
 {
 	char	**tab;
@@ -29,12 +43,17 @@ void	ft_range_of_color(char *line, t_data *data)
 	int		len;
 
 	path = ft_strcpy(line);
+	if (ft_check_virgule(path) != 2)
+	{
+		free(path);
+		ft_print_error("error: number of virgule must be equale two\n", data);
+	}
 	tab = ft_split(path, ',');
 	ft_check_error_color(tab, data);
 	ft_convert_to_int(tab, data);
 	len = ft_check_error_tab(tab);
 	if (len != 3)
-		ft_print_error("Error: the number of RGB\
+		ft_print_error("error: the number of RGB\
  must be three separated by comma\n", data);
 	data->val1 = ft_atoi(tab[0]);
 	data->val2 = ft_atoi(tab[1]);
@@ -58,7 +77,7 @@ void	ft_color_and_floor(char **tab, t_data *data)
 		ft_range_of_color(tab[1], data);
 	}
 	else
-		ft_print_error("Error: some characters is wrong\n", data);
+		ft_print_error("error: some characters is wrong\n", data);
 }
 
 char	*ft_duplicat(char *str, t_data *data)

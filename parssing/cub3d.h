@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 20:20:14 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:59:19 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 
 typedef struct s_map1
 {
-	int		nb_dir;
 	int		no_dup;
 	int		so_dup;
 	int		we_dup;

@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 00:03:37 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/28 16:10:34 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:58:20 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_check_error_color(char **tab, t_data *data)
 		while (tab[i][j])
 		{
 			if (tab[i][j] < '0' || tab[i][j] > '9')
-				ft_print_error("Error: the RGB color must be digit\n", data);
+				ft_print_error("error: the RGB color must be digit\n", data);
 			j++;
 		}
 		i++;
@@ -91,7 +91,7 @@ void	ft_convert_to_int(char **tab, t_data *data)
 	while (tab[i])
 	{
 		if (ft_atoi(tab[i]) < 0 || ft_atoi(tab[i]) > 255)
-			ft_print_error("Error: out of range,\
+			ft_print_error("error: out of range,\
  the range from 0 to 255\n", data);
 		i++;
 	}

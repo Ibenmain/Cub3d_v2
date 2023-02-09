@@ -6,6 +6,7 @@
         "string_view": "c",
         "vector": "c",
         "__config": "cpp",
-        "cub3d.h": "c"
+        "cub3d.h": "c",
+        "ostream": "c"
     }
 }

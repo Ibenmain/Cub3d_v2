@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 22:43:33 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/01/20 16:13:35 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 16:58:59 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_check_wall(t_data *data)
 	i = 0;
 	j = 0;
 	if (!data->map[0])
-		ft_print_error("Error: messing map\n", data);
+		ft_print_error("error: messing map\n", data);
 	line = data->map[0];
 	line2 = data->map[data->j - 1];
 	if (line[0] != '1' && line[0] != ' ')
@@ -82,7 +82,6 @@ void	ft_parssing_map(t_data *data)
 	int		j;
 
 	data->i = 0;
-	data->map1.nb_dir = 0;
 	ft_initialisation_var(data);
 	while (data->all_map[data->i])
 	{
@@ -94,7 +93,6 @@ void	ft_parssing_map(t_data *data)
 			while (data->all_map[data->i][j] == ' ')
 				j++;
 			ft_passing_error(data, data->all_map[data->i] + j);
-			data->map1.nb_dir += 1;
 		}
 		data->i++;
 	}

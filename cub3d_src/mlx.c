@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 15:49:29 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:14:54 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,22 @@ void	draw_rect(t_data *data)
 		i++;
 	}
 }
-
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 void	generate_projection(t_data *data)
 {
 	int	i;
 	int	j;
+	// int	k;
+	// int	color;
 	int	wall_strip_height;
 	int	wall_top_pixl;
 	int	wall_botton_pixl;
 
 	i = 0;
+	// k = 0;
 	while (i < data->player.num_ray)
 	{
 		data->perp_disc = data->rays[i].distance * cos(data->rays[i].ray_angle - data->player.rotationangl);
@@ -120,13 +126,18 @@ void	generate_projection(t_data *data)
 		wall_botton_pixl = (HEIGHT_WIN / 2) + (wall_strip_height / 2);
 		wall_botton_pixl = wall_botton_pixl > HEIGHT_WIN ? HEIGHT_WIN : wall_botton_pixl;
 		j = wall_top_pixl - 1;
+		// while (k++ < wall_top_pixl)
+		// {
+		// 	color = create_trgb(0, data->val1, data->val1, data->val3);
+		// 	my_mlx_pixel_put1(data,i, k ,color);
+		// }
 		while (j++ < wall_botton_pixl)
 			my_mlx_pixel_put1(data,i, j ,0xFFFFFF);
 		i++;
 	}
 }
 
-void	ft_mlx_clear_window(data)
+void	ft_mlx_clear_window(t_data *data)
 {
 	int i;
 	int j;
@@ -140,7 +151,7 @@ void	ft_mlx_clear_window(data)
 	}
 }
 
-void	ft_mlx_clear_window(t_data *data)
+int	ft_put_image_to_win(t_data *data)
 {
 	ft_mlx_clear_window(data);
 	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \

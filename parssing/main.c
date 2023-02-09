@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:39 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 15:12:50 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:02:38 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int ac, char **av)
 	if (!data)
 		return (1);
 	if (ac != 2 || ft_check_name_map(av[1]))
-		return (free(data), printf("Error: unvalid argiments!\n"), 1);
+		return (free(data), printf("error: unvalid argiments!\n"), 1);
 	ft_map_size(av[1], data);
 	ft_get_map(av[1], data);
 	ft_parssing_map(data);
