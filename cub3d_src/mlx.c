@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 20:37:19 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:43:41 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	generate_projection(t_data *data)
 	}
 }
 
-int	ft_put_image_to_win(t_data *data)
+void	ft_mlx_clear_window(t_data *data)
 {
 	int i;
 	int j;
@@ -136,12 +136,14 @@ int	ft_put_image_to_win(t_data *data)
 	{
 		j = -1;
 		while (++j < WIDTH_WIN)
-		{
 			my_mlx_pixel_put1(data, j, i, 0x000000);
-		}
 		
-	}
-	
+	}	
+}
+
+int	ft_put_image_to_win(t_data *data)
+{
+	ft_mlx_clear_window(data);
 	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \
 		* TILE_SIZE, data->len * TILE_SIZE);
 	data->img.addr = mlx_get_data_addr(data->img.img, \

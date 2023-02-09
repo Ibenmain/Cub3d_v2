@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 20:33:21 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:41:16 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ int	ft_mlx_wind(t_data *data)
 	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img1.img1, 0, 0);
 	return (0);
 }
-
-
-
 
 void	ft_cub3d(t_data *data)
 {
