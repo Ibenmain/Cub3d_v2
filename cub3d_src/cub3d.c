@@ -6,15 +6,27 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 16:58:20 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:51:21 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parssing/cub3d.h"
 
+void	ft_get_direction_player(t_data *data)
+{
+	if (data->dir.n)
+		data->player.rotationangl = 3 * M_PI_2;
+	else if (data->dir.s)
+		data->player.rotationangl = M_PI_2;
+	else if (data->dir.e)
+		data->player.rotationangl = 0;
+	else if (data->dir.w)
+		data->player.rotationangl = M_PI;
+}
+
 void	ft_init_player(t_data *data)
 {
-	data->player.rotationangl = 3 * M_PI_2;
+	ft_get_direction_player(data);
 	data->player.movespeed = 1;
 	data->player.walkdirection = 0;
 	data->player.sidedirection = 0;
@@ -26,8 +38,6 @@ void	ft_init_player(t_data *data)
 	data->player.pos_y = -1;
 	data->player.wall_hit_x = 0;
 	data->player.wall_hit_y = 0;
-	//allocate the total amount of bytes in memory to hold our color buffer
-	// data->colorbuffer = malloc(sizeof(char) * WIDTH_WIN * HEIGHT_WIN);
 }
 
 int	ft_mlx_wind(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:07:00 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 14:39:47 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:55:26 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_player_movement(t_data *data)
 {
-	mlx_clear_window(data->mlx.mx, data->mlx.mlx_win);
 	if (data->player.walkdirection == 1)
 		ft_player_up(data);
 	if (data->player.walkdirection == -1)

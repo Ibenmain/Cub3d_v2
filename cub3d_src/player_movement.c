@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:04:15 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 20:19:48 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 23:26:08 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,22 @@ int	ft_has_wall(t_data *data, double x, double y)
 	mapx = floor(x / TILE_SIZE);
 	mapy = floor(y / TILE_SIZE);
 	if ((data->map[(int)mapx][(int)floor(data->player.pos_x / TILE_SIZE)] \
-		!= '0' && data->map[(int)mapx][(int)floor(data->player.pos_x / \
-		TILE_SIZE)] != 'N') && (data->map[(int)floor(data->player.pos_y / \
-		TILE_SIZE)][(int)mapy] != '0' && data->map[(int)floor(data->player. \
-		pos_y / TILE_SIZE)][(int)mapy] != 'N'))
+		!= '0' && (data->map[(int)mapx][(int)floor(data->player.pos_x / \
+		TILE_SIZE)] != 'N' && data->map[(int)mapx][(int)floor(data->player.pos_x / \
+		TILE_SIZE)] != 'E' && data->map[(int)mapx][(int)floor(data->player.pos_x / \
+		TILE_SIZE)] != 'S' && data->map[(int)mapx][(int)floor(data->player.pos_x / \
+		TILE_SIZE)] != 'W')) && (data->map[(int)floor(data->player.pos_y / \
+		TILE_SIZE)][(int)mapy] != '0' && (data->map[(int)floor(data->player. \
+		pos_y / TILE_SIZE)][(int)mapy] != 'N' && data->map[(int)floor(data->player. \
+		pos_y / TILE_SIZE)][(int)mapy] != 'E' && data->map[(int)floor(data->player. \
+		pos_y / TILE_SIZE)][(int)mapy] != 'S'&& data->map[(int)floor(data->player. \
+		pos_y / TILE_SIZE)][(int)mapy] != 'W')))
 		return (1);
 	return (data->map[(int)mapx][(int)mapy] != '0' \
-		&& data->map[(int)mapx][(int)mapy] != 'N');
+		&& (data->map[(int)mapx][(int)mapy] != 'N' \
+		&& data->map[(int)mapx][(int)mapy] != 'E' \
+		&& data->map[(int)mapx][(int)mapy] != 'S' \
+		&& data->map[(int)mapx][(int)mapy] != 'W'));
 }
 
 void	ft_player_right(t_data *data)

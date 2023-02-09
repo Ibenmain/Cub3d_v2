@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 16:59:19 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:43:26 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,12 @@ typedef struct s_data{
 	int			i;
 	int			j;
 	int			biggest_line;
-	int			val1;
-	int			val2;
-	int			val3;
+	int			val1_f;
+	int			val2_f;
+	int			val3_f;
+	int			val1_c;
+	int			val2_c;
+	int			val3_c;
 	double		perp_disc;
 	double		disc_proj_plane;
 	double		proj_wall_height;
@@ -180,7 +183,7 @@ int		ft_check_line(char *line);
 int		ft_check_error_tab(char **tab);
 void	ft_get_map(char *name_map, t_data *data);
 void	ft_directione(char **tab, t_data *data);
-void	ft_range_of_color(char	*line, t_data *data);
+void	ft_range_of_color(char *val, char *line, t_data *data);
 void	ft_color_and_floor(char **tab, t_data *data);
 void	ft_free(char	**tab);
 void	ft_convert_to_int(char **tab, t_data *data);

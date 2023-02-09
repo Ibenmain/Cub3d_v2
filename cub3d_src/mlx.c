@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 17:14:54 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/10 00:43:10 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,21 @@ void	draw_rect(t_data *data)
 		i++;
 	}
 }
+
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
+
 void	generate_projection(t_data *data)
 {
 	int	i;
 	int	j;
-	// int	k;
-	// int	color;
 	int	wall_strip_height;
 	int	wall_top_pixl;
 	int	wall_botton_pixl;
 
 	i = 0;
-	// k = 0;
 	while (i < data->player.num_ray)
 	{
 		data->perp_disc = data->rays[i].distance * cos(data->rays[i].ray_angle - data->player.rotationangl);
@@ -122,15 +121,12 @@ void	generate_projection(t_data *data)
 		data->proj_wall_height = (TILE_SIZE / data->perp_disc) * data->disc_proj_plane;
 		wall_strip_height = (int)data->proj_wall_height;
 		wall_top_pixl = (HEIGHT_WIN / 2) - (wall_strip_height / 2);
-		wall_top_pixl = wall_top_pixl < 0 ? 0 : wall_top_pixl;
+		if (wall_top_pixl < 0)
+			wall_top_pixl = 0;
 		wall_botton_pixl = (HEIGHT_WIN / 2) + (wall_strip_height / 2);
-		wall_botton_pixl = wall_botton_pixl > HEIGHT_WIN ? HEIGHT_WIN : wall_botton_pixl;
+		if (wall_botton_pixl > HEIGHT_WIN)
+			wall_botton_pixl = HEIGHT_WIN;
 		j = wall_top_pixl - 1;
-		// while (k++ < wall_top_pixl)
-		// {
-		// 	color = create_trgb(0, data->val1, data->val1, data->val3);
-		// 	my_mlx_pixel_put1(data,i, k ,color);
-		// }
 		while (j++ < wall_botton_pixl)
 			my_mlx_pixel_put1(data,i, j ,0xFFFFFF);
 		i++;
@@ -160,9 +156,9 @@ int	ft_put_image_to_win(t_data *data)
 		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	generate_projection(data);
 	ft_draw_map(data);
-	draw_circle(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
-	ft_cast_rays(data);
 	draw_rect(data);
+	ft_cast_rays(data);
+	draw_circle(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
 	draw_line(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
 	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img1.img1, 0, 0);
 	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img.img, 0, 0);
