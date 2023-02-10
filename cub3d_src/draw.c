@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:30:58 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 14:33:13 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:25:24 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_mlx_pixel_put1(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && x <= WIDTH_WIN && y >= 0 && y <= HEIGHT_WIN)
+	if (x >= 0 && x < WIDTH_WIN && y >= 0 && y < HEIGHT_WIN)
 	{
 		dst = data->img1.addr1 + (y * data->img1.line_length1 + x * \
 			(data->img1.bits_per_pixel1 / 8));

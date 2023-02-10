@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:49:21 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 16:23:29 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:37:46 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	calcule_dis(t_data *data, int i)
 	// we need get the smaller distanc between horizontal & vertical
 	ver_dis = hypot(data->player.pos_x - data->ray.wall_hit_ver_x, data->player.pos_y - data->ray.wall_hit_ver_y);
 	hor_dis = hypot(data->player.pos_x - data->ray.wall_hit_hor_x, data->player.pos_y - data->ray.wall_hit_hor_y);
+	// printf("%lf\t%lf\n", ver_dis, hor_dis);
 	if (data->ray.found_wall_h && data->ray.found_wall_v)
 	{
 		if (ver_dis <= hor_dis)
@@ -55,6 +56,7 @@ int	calcule_dis(t_data *data, int i)
 		data->rays[i].distance = ver_dis;
 		data->rays[i].ver_hor = 1;
 	}
+	// printf("-->%lf\n", data->rays[i].distance);
 	return (0);
 }
 
@@ -117,6 +119,7 @@ void	ft_cast_rays(t_data *data)
 		ft_ray_cast_hor(data, rayangle);
 		ft_ray_cast_ver(data, rayangle);
 		calcule_dis (data, i);
+		// printf("%lf\n", data->rays[i].distance);
 		data->rays[i].ray_angle = rayangle;
 		rayangle += data->player.fov_angle / data->player.num_ray;
 		i++;
