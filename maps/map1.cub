@@ -1,6 +1,6 @@
 
-C 0,0,0
-F 220,0,100
+C 220,0,100
+F 20,0,110
 
 NO ./xpm/file1.xpm
 SO ./xpm/file2.xpm

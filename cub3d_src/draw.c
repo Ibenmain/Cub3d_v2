@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:30:58 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/10 15:25:24 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:59:50 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_draw_map(t_data *data)
 				if (data->map[i][j] == ' ')
 					draw_rectangle(i, j, data, 0xFF000000);
 				else if (data->map[i][j] == '1')
-					draw_rectangle(i, j, data, 0x000066CC);
+					draw_rectangle(i, j, data, 0x000000);
 				else
 					draw_rectangle(i, j, data, 0x00CCCCFF);
 		}

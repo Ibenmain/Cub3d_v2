@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/10 16:26:02 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:57:41 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,20 @@ void	generate_projection(t_data *data)
 		data->proj_wall_height = (TILE_SIZE / data->perp_disc) * data->disc_proj_plane;
 		wall_strip_height = (int)data->proj_wall_height;
 		wall_top_pixl = (HEIGHT_WIN / 2.0) - (wall_strip_height / 2);
-		// if (wall_top_pixl < 0)
-		// 	wall_top_pixl = 0;
+		if (wall_top_pixl < 0)
+			wall_top_pixl = 0;
 		wall_bottom_pixl = (HEIGHT_WIN / 2) + (wall_strip_height / 2);
-		// if (wall_bottom_pixl > HEIGHT_WIN)
-		// 	wall_bottom_pixl = HEIGHT_WIN;
+		if (wall_bottom_pixl > HEIGHT_WIN)
+			wall_bottom_pixl = HEIGHT_WIN;
 		j = 0;
 		while (j++ < wall_top_pixl)
-			my_mlx_pixel_put1(data,i, j ,0xFF0000);
+			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_c, data->val2_c, data->val3_c));
 		j = wall_top_pixl;
 		while (j++ < wall_bottom_pixl)
 			my_mlx_pixel_put1(data,i, j ,0xFFFFFF);
 		j = wall_bottom_pixl;
 		while (j++ < HEIGHT_WIN)
-			my_mlx_pixel_put1(data,i, j ,0x0000FF);
+			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_f, data->val2_f, data->val3_f));
 		i++;
 	}
 }
