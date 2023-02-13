@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/10 16:19:34 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:16:13 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define TURNDIRECTION 0
 # define WALKDIRECTION 0
 # define MOVESPEED 2.0  
+# define TEXTURE_WIDTH 640
+# define TEXTURE_HEIGHT 400
 
 typedef struct s_map1
 {
@@ -74,6 +76,14 @@ typedef struct s_img1 {
 	int		line_length1;
 	int		endian1;
 }				t_img1;
+
+typedef struct s_imgwall {
+	void	*imgwall;
+	char	*addrwall;
+	int		bits_per_pixelwall;
+	int		line_lengthwall;
+	int		endianwall;
+}				t_imgwall;
 
 typedef struct s_dir{
 	char	n;
@@ -140,33 +150,34 @@ typedef struct s_rays{
 }		t_rays;
 
 typedef struct s_data{
-	char		**all_map;
-	char		**map_dir;
-	char		**map;
-	int			line_max;
-	int			len;
-	int			line_map;
-	int			i;
-	int			j;
-	int			biggest_line;
-	int			val1_f;
-	int			val2_f;
-	int			val3_f;
-	int			val1_c;
-	int			val2_c;
-	int			val3_c;
-	double		perp_disc;
-	double		disc_proj_plane;
-	double		proj_wall_height;
-	// char *colorbuffer;
-	t_map1		map1;
-	t_dir		dir;
-	t_mlx		mlx;
-	t_img		img;
-	t_img1		img1;
-	t_player	player;
-	t_ray		ray;
-	t_rays		*rays;
+	char			**all_map;
+	char			**map_dir;
+	char			**map;
+	int				line_max;
+	int				len;
+	int				line_map;
+	int				i;
+	int				j;
+	int				biggest_line;
+	int				val1_f;
+	int				val2_f;
+	int				val3_f;
+	int				val1_c;
+	int				val2_c;
+	int				val3_c;
+	double			perp_disc;
+	double			disc_proj_plane;
+	double			proj_wall_height;
+	unsigned int	*wall_texture;
+	t_map1			map1;
+	t_dir			dir;
+	t_mlx			mlx;
+	t_img			img;
+	t_img1			img1;
+	t_imgwall		imgwall;
+	t_player		player;
+	t_ray			ray;
+	t_rays			*rays;
 }		t_data;
 
 char	*get_next_line(int fd);
@@ -188,7 +199,6 @@ void	ft_color_and_floor(char **tab, t_data *data);
 void	ft_free(char	**tab);
 void	ft_convert_to_int(char **tab, t_data *data);
 void	ft_check_error_color(char **tab, t_data *data);
-//---------------------------------------------------------//
 void	ft_passing_error(t_data *data, char *line);
 void	ft_parssing_map(t_data *data);
 void	ft_check_duplicat(t_data *data);
@@ -209,7 +219,7 @@ int		ft_put_image_to_win(t_data *data);
 void	draw_circle(t_data *data, int x, int y, int r);
 void	draw_line(t_data *data, int x, int y, int color);
 void	ft_initialisation_var(t_data *data);
-void	ft_data_player(t_data *data);
+void	ft_position_player(t_data *data);
 int		ft_player_movement(t_data *data);
 int		key_pressed(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);

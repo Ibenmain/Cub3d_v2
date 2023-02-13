@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:59:01 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 20:01:46 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:17:38 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ double	ft_normalizeangle(double ray_angle)
 	return (ray_angle);
 }
 
-void	ft_data_player(t_data *data)
+void	ft_position_player(t_data *data)
 {
 	int	i;
 	int	j;

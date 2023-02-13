@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/10 17:57:41 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:45:50 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,34 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+void	wall_texture(t_data *data)
+{
+	int	x;
+	int	y;
+	x = 0;
+	while (x < TEXTURE_WIDTH)
+	{
+		y = 0;
+		while (y < TEXTURE_HEIGHT)
+		{
+			data->wall_texture[(TEXTURE_WIDTH * y) + x] = (x % 8 && y % 8) ? 0xFF0000FF : 0xFF000000;
+			y++;
+		}
+		x++;
+	}
+}
+
 void	generate_projection(t_data *data)
 {
 	int	i;
 	int	j;
+	int	color;
 	int	wall_strip_height;
 	int	wall_top_pixl;
 	int	wall_bottom_pixl;
+	int	textur_offset_x;
+	int	textur_offset_y;
+	// int	distance_from_top;
 
 	i = 0;
 	while (i < data->player.num_ray)
@@ -129,9 +150,18 @@ void	generate_projection(t_data *data)
 		j = 0;
 		while (j++ < wall_top_pixl)
 			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_c, data->val2_c, data->val3_c));
+		if (data->rays[i].ver_hor)
+			textur_offset_x = (data->rays[i].pos_ray_y / TILE_SIZE - (int)(data->rays[i].pos_ray_y) / TILE_SIZE) * TEXTURE_WIDTH;
+		else
+			textur_offset_x = (data->rays[i].pos_ray_x / TILE_SIZE - (int)(data->rays[i].pos_ray_x) / TILE_SIZE) * TEXTURE_WIDTH;
 		j = wall_top_pixl;
 		while (j++ < wall_bottom_pixl)
-			my_mlx_pixel_put1(data,i, j ,0xFFFFFF);
+		{
+			// distance_from_top = j + (wall_strip_height / 2) - (HEIGHT_WIN / 2);
+			textur_offset_y = (j - wall_top_pixl) * ((double)TEXTURE_HEIGHT / wall_strip_height);
+			color = *((int *)((data->imgwall.addrwall) + ((int)(textur_offset_y % TEXTURE_HEIGHT) * data->imgwall.line_lengthwall + (int)(textur_offset_x % TEXTURE_WIDTH) * (data->imgwall.bits_per_pixelwall / 8))));
+			my_mlx_pixel_put1(data, i, j, color);
+		}
 		j = wall_bottom_pixl;
 		while (j++ < HEIGHT_WIN)
 			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_f, data->val2_f, data->val3_f));
@@ -156,10 +186,6 @@ void	ft_mlx_clear_window(t_data *data)
 int	ft_put_image_to_win(t_data *data)
 {
 	ft_mlx_clear_window(data);
-	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \
-		* TILE_SIZE, data->len * TILE_SIZE);
-	data->img.addr = mlx_get_data_addr(data->img.img, \
-		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	ft_draw_map(data);
 	draw_rect(data);
 	ft_cast_rays(data);

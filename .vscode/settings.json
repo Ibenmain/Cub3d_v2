@@ -7,6 +7,10 @@
         "vector": "c",
         "__config": "cpp",
         "cub3d.h": "c",
-        "ostream": "c"
+        "ostream": "c",
+        "algorithm": "c",
+        "atomic": "c",
+        "cstdint": "c",
+        "utility": "c"
     }
 }

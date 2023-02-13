@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 22:51:21 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:45:58 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ void	ft_init_player(t_data *data)
 	data->player.pos_y = -1;
 	data->player.wall_hit_x = 0;
 	data->player.wall_hit_y = 0;
+	data->wall_texture = (unsigned int *)malloc(sizeof(unsigned int) * (TEXTURE_WIDTH * TEXTURE_HEIGHT));
 }
 
 int	ft_mlx_wind(t_data *data)
 {
+	int	h;
+	int	w;
+
 	data->len = get_line_map(data);
 	data->mlx.mx = mlx_init();
 	if (!data->mlx.mx)
@@ -50,16 +54,23 @@ int	ft_mlx_wind(t_data *data)
 		WIDTH_WIN, HEIGHT_WIN, "./cub3d");
 	if (!data->mlx.mlx_win)
 		return (-1);
+	data->img.img = mlx_new_image(data->mlx.mx, data->line_max \
+		* TILE_SIZE, data->len * TILE_SIZE);
+	data->img.addr = mlx_get_data_addr(data->img.img, \
+		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	data->img1.img1 = mlx_new_image(data->mlx.mx, WIDTH_WIN, HEIGHT_WIN);
 	data->img1.addr1 = mlx_get_data_addr(data->img1.img1, \
 		&data->img1.bits_per_pixel1, &data->img1.line_length1, &data->img1.endian1);
 	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img1.img1, 0, 0);
+	data->imgwall.imgwall = mlx_xpm_file_to_image(data->mlx.mx, "image/wallnumber1.xpm", &w, &h);
+	data->imgwall.addrwall = mlx_get_data_addr(data->imgwall.imgwall, \
+		&data->imgwall.bits_per_pixelwall, &data->imgwall.line_lengthwall, &data->imgwall.endianwall);
 	return (0);
 }
 
 void	ft_cub3d(t_data *data)
 {
-	ft_data_player(data);
+	ft_position_player(data);
 	data->rays = (t_rays *)malloc(sizeof(t_rays) * data->player.num_ray);
 	if (!data->rays)
 		ft_print_error("error: allocation failed", data);

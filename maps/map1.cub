@@ -1,11 +1,11 @@
 
-C 220,0,100
-F 20,0,110
+C 224,255,255
+F 128,122,116
 
-NO ./xpm/file1.xpm
-SO ./xpm/file2.xpm
-WE ./xpm/file3.xpm
-EA ./xpm/file4.xpm
+NO ./image/file2.xpm
+SO ./image/file3.xpm
+WE ./image/file4.xpm
+EA ./image/wallnumber1.xpm
 
 1111111111111111111111111111111111111111111
 1100000010000000000000000000000000000000001
