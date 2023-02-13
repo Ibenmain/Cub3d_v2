@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 22:43:33 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 16:58:59 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 00:34:17 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	ft_print_error(char *str, void	*data)
 {
 	int	i;
 
+	(void)data;
 	i = 0;
 	if (!str)
 		return ;
 	while (str[i] != '\0')
 		write(1, &str[i++], 1);
-	free(data);
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/13 15:21:02 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:02:32 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_init_player(t_data *data)
 	data->player.walkdirection = 0;
 	data->player.sidedirection = 0;
 	data->player.turndirection = 0;
-	data->player.rotationspeed = 0.1;
+	data->player.rotationspeed = 0.06;
 	data->player.fov_angle = 60 * (M_PI / 180);
 	data->player.num_ray = WIDTH_WIN;
 	data->player.pos_x = -1;

@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:39 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 23:42:00 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 00:37:33 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,17 @@ int	main(int ac, char **av)
 	ft_divide_map(data);
 	ft_init_player(data);
 	ft_cub3d(data);
-	// free(data->map1.no_path);
-	// free(data->map1.so_path);
-	// free(data->map1.we_path);
-	// free(data->map1.ea_path);
-	// ft_free(data->all_map);
-	// ft_free(data->map);
-	// ft_free(data->rays);
-	// free(data);
+	free(data->map1.no_line);
+	free(data->map1.so_line);
+	free(data->map1.we_line);
+	free(data->map1.ea_line);
+	free(data->map1.no_path);
+	free(data->map1.so_path);
+	free(data->map1.we_path);
+	free(data->map1.ea_path);
+	ft_free(data->all_map);
+	ft_free(data->map);
+	free(data->rays);
+	free(data);
 	return (0);
 }

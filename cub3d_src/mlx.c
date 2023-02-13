@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/13 13:45:50 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 00:09:33 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	generate_projection(t_data *data)
 	int	wall_bottom_pixl;
 	int	textur_offset_x;
 	int	textur_offset_y;
-	// int	distance_from_top;
+	int	distance_from_top;
 
 	i = 0;
 	while (i < data->player.num_ray)
@@ -148,6 +148,7 @@ void	generate_projection(t_data *data)
 		if (wall_bottom_pixl > HEIGHT_WIN)
 			wall_bottom_pixl = HEIGHT_WIN;
 		j = 0;
+		//set the color of the ceiling
 		while (j++ < wall_top_pixl)
 			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_c, data->val2_c, data->val3_c));
 		if (data->rays[i].ver_hor)
@@ -155,14 +156,16 @@ void	generate_projection(t_data *data)
 		else
 			textur_offset_x = (data->rays[i].pos_ray_x / TILE_SIZE - (int)(data->rays[i].pos_ray_x) / TILE_SIZE) * TEXTURE_WIDTH;
 		j = wall_top_pixl;
+		// rander the wall from the wallTopPixel to wallBottomPixel
 		while (j++ < wall_bottom_pixl)
 		{
-			// distance_from_top = j + (wall_strip_height / 2) - (HEIGHT_WIN / 2);
-			textur_offset_y = (j - wall_top_pixl) * ((double)TEXTURE_HEIGHT / wall_strip_height);
+			distance_from_top = j + (wall_strip_height / 2) - (HEIGHT_WIN / 2);
+			textur_offset_y = (distance_from_top) * ((double)TEXTURE_HEIGHT / wall_strip_height);
 			color = *((int *)((data->imgwall.addrwall) + ((int)(textur_offset_y % TEXTURE_HEIGHT) * data->imgwall.line_lengthwall + (int)(textur_offset_x % TEXTURE_WIDTH) * (data->imgwall.bits_per_pixelwall / 8))));
 			my_mlx_pixel_put1(data, i, j, color);
 		}
 		j = wall_bottom_pixl;
+		// set the color of the floor
 		while (j++ < HEIGHT_WIN)
 			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_f, data->val2_f, data->val3_f));
 		i++;
