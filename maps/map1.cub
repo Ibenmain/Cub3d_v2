@@ -2,10 +2,10 @@
 C 224,255,255
 F 128,122,116
 
-NO ./image/file2.xpm
-SO ./image/file3.xpm
-WE ./image/file4.xpm
-EA ./image/wallnumber1.xpm
+NO ./image/Fcb.xpm
+SO ./image/wall.xpm
+WE ./image/wallnumber1.xpm
+EA ./image/RcaImage.xpm
 
 1111111111111111111111111111111111111111111
 1100000010000000000000000000000000000000001

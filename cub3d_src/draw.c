@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:30:58 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/10 17:59:50 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:42:00 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	my_mlx_pixel_put1(t_data *data, int x, int y, int color)
 
 	if (x >= 0 && x < WIDTH_WIN && y >= 0 && y < HEIGHT_WIN)
 	{
-		dst = data->img1.addr1 + (y * data->img1.line_length1 + x * \
-			(data->img1.bits_per_pixel1 / 8));
+		dst = data->img_3d.addr + (y * data->img_3d.line_length + x * \
+			(data->img_3d.bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
 }
@@ -31,8 +31,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	if (x >= 0 && x <= data->line_max * TILE_SIZE \
 		&& y >= 0 && y <= data->len * TILE_SIZE)
 	{
-		dst = data->img.addr + (y * data->img.line_length + x * \
-			(data->img.bits_per_pixel / 8));
+		dst = data->img_mini.addr + (y * data->img_mini.line_length + x * \
+			(data->img_mini.bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 00:09:33 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:39:54 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,55 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	wall_texture(t_data *data)
+int	ft_get_direction(t_data *data, int i)
 {
-	int	x;
-	int	y;
-	x = 0;
-	while (x < TEXTURE_WIDTH)
+	int	dir;
+
+	dir = -1;
+	if (!data->rays[i].ver_hor && data->rays[i].dir_up)
+		dir = NO;
+	else if (data->rays[i].ver_hor && data->rays[i].dir_right)
+		dir = EA;
+	else if (data->rays[i].ver_hor && data->rays[i].dir_down)
+		dir = SO;
+	else if (!data->rays[i].ver_hor && data->rays[i].dir_up)
+		dir = WE;
+	return (dir);
+}
+
+int	ft_get_textur_affsetx(t_data *data, int i)
+{
+	int	textur_offset_x;
+	int	direction;
+	
+	direction = ft_get_direction(data, i);
+	if (data->rays[i].ver_hor)
+		textur_offset_x = (data->rays[i].pos_ray_y / TILE_SIZE - (int)(data->rays[i].pos_ray_y) / TILE_SIZE) * data->img_dir[direction].width;
+	else
+		textur_offset_x = (data->rays[i].pos_ray_x / TILE_SIZE - (int)(data->rays[i].pos_ray_x) / TILE_SIZE) * data->img_dir[direction].width;
+	return (textur_offset_x);
+}
+
+void	ft_rander_wall_strip(t_data *data, int w_bottom_pixl, int w_top_pixl, int w_s_height, int i)
+{
+	int	textur_offset_y;
+	int	distance_from_top;
+	int	color;
+	int	j;
+
+	// rander the wall from the wallTopPixel to wallBottomPixel
+	data->rays[i].textur_offset_x = ft_get_textur_affsetx(data, i);
+	j = w_top_pixl;
+	while (j++ < w_bottom_pixl)
 	{
-		y = 0;
-		while (y < TEXTURE_HEIGHT)
+		distance_from_top = j + (w_s_height / 2) - (HEIGHT_WIN / 2);
+		textur_offset_y = (distance_from_top) * ((double)data->img_dir[NO].height / w_s_height);
+		data->rays[i].textur_offset_y = ft_get_textur_affsety(data, i); 
+		if (!ft_strcmp(data->map1.no_line, "NO"))
 		{
-			data->wall_texture[(TEXTURE_WIDTH * y) + x] = (x % 8 && y % 8) ? 0xFF0000FF : 0xFF000000;
-			y++;
+			color = *((int *)((data->img_dir[NO].addr) + ((int)(textur_offset_y % data->img_dir[NO].height) * data->img_dir[NO].line_length + (int)(data->rays[i].textur_offset_x % data->img_dir[NO].width) * (data->img_dir[NO].bits_per_pixel / 8))));
+			my_mlx_pixel_put1(data, i, j, color);
 		}
-		x++;
 	}
 }
 
@@ -126,13 +161,9 @@ void	generate_projection(t_data *data)
 {
 	int	i;
 	int	j;
-	int	color;
 	int	wall_strip_height;
 	int	wall_top_pixl;
 	int	wall_bottom_pixl;
-	int	textur_offset_x;
-	int	textur_offset_y;
-	int	distance_from_top;
 
 	i = 0;
 	while (i < data->player.num_ray)
@@ -147,55 +178,29 @@ void	generate_projection(t_data *data)
 		wall_bottom_pixl = (HEIGHT_WIN / 2) + (wall_strip_height / 2);
 		if (wall_bottom_pixl > HEIGHT_WIN)
 			wall_bottom_pixl = HEIGHT_WIN;
-		j = 0;
 		//set the color of the ceiling
+		j = 0;
 		while (j++ < wall_top_pixl)
 			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_c, data->val2_c, data->val3_c));
-		if (data->rays[i].ver_hor)
-			textur_offset_x = (data->rays[i].pos_ray_y / TILE_SIZE - (int)(data->rays[i].pos_ray_y) / TILE_SIZE) * TEXTURE_WIDTH;
-		else
-			textur_offset_x = (data->rays[i].pos_ray_x / TILE_SIZE - (int)(data->rays[i].pos_ray_x) / TILE_SIZE) * TEXTURE_WIDTH;
-		j = wall_top_pixl;
-		// rander the wall from the wallTopPixel to wallBottomPixel
-		while (j++ < wall_bottom_pixl)
-		{
-			distance_from_top = j + (wall_strip_height / 2) - (HEIGHT_WIN / 2);
-			textur_offset_y = (distance_from_top) * ((double)TEXTURE_HEIGHT / wall_strip_height);
-			color = *((int *)((data->imgwall.addrwall) + ((int)(textur_offset_y % TEXTURE_HEIGHT) * data->imgwall.line_lengthwall + (int)(textur_offset_x % TEXTURE_WIDTH) * (data->imgwall.bits_per_pixelwall / 8))));
-			my_mlx_pixel_put1(data, i, j, color);
-		}
-		j = wall_bottom_pixl;
+		ft_rander_wall_strip(data, wall_bottom_pixl, wall_top_pixl, wall_strip_height, i);
 		// set the color of the floor
+		j = wall_bottom_pixl;
 		while (j++ < HEIGHT_WIN)
 			my_mlx_pixel_put1(data,i, j , create_trgb(0, data->val1_f, data->val2_f, data->val3_f));
 		i++;
 	}
 }
 
-void	ft_mlx_clear_window(t_data *data)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (i++ < HEIGHT_WIN)
-	{
-		j = -1;
-		while (++j < WIDTH_WIN)
-			my_mlx_pixel_put1(data, j, i, 0x000000);
-	}
-}
-
 int	ft_put_image_to_win(t_data *data)
 {
-	ft_mlx_clear_window(data);
+	mlx_clear_window(data->mlx.mx, data->mlx.mlx_win);
 	ft_draw_map(data);
 	draw_rect(data);
 	ft_cast_rays(data);
 	generate_projection(data);
 	draw_circle(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
 	draw_line(data, data->player.pos_y, data->player.pos_x, 0xFF0000);
-	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img1.img1, 0, 0);
-	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img_3d.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.mx, data->mlx.mlx_win, data->img_mini.img, 0, 0);
 	return (0);
 }

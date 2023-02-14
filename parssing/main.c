@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:39 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 00:37:33 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:08:44 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	ft_check_spase_in_line(char *str)
 		return (1);
 	return (0);	
 }
+
 void	ft_divide_map(t_data *data)
 {
 	int i = 0;
@@ -90,6 +91,22 @@ void	ft_divide_map(t_data *data)
 			ft_print_error("error: invalid map", data);
 		i++;
 	}
+}
+
+void	ft_free_all_data(t_data *data)
+{
+	free(data->map1.no_line);
+	free(data->map1.so_line);
+	free(data->map1.we_line);
+	free(data->map1.ea_line);
+	free(data->map1.no_path);
+	free(data->map1.so_path);
+	free(data->map1.we_path);
+	free(data->map1.ea_path);
+	ft_free(data->all_map);
+	ft_free(data->map);
+	free(data->rays);
+	free(data);
 }
 
 int	main(int ac, char **av)
@@ -111,17 +128,6 @@ int	main(int ac, char **av)
 	ft_divide_map(data);
 	ft_init_player(data);
 	ft_cub3d(data);
-	free(data->map1.no_line);
-	free(data->map1.so_line);
-	free(data->map1.we_line);
-	free(data->map1.ea_line);
-	free(data->map1.no_path);
-	free(data->map1.so_path);
-	free(data->map1.we_path);
-	free(data->map1.ea_path);
-	ft_free(data->all_map);
-	ft_free(data->map);
-	free(data->rays);
-	free(data);
+	ft_free_all_data(data);
 	return (0);
 }

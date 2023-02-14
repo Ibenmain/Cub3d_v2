@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 22:43:33 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 00:34:17 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:51:18 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,28 @@ void	ft_get_max_line(t_data *data)
 	}
 }
 
-void	ft_print_error(char *str, void	*data)
+void	ft_print_error(char *str, t_data *data)
 {
 	int	i;
 
-	(void)data;
+	// (void)data;
 	i = 0;
 	if (!str)
 		return ;
 	while (str[i] != '\0')
 		write(1, &str[i++], 1);
+	free(data->map1.no_line);
+	free(data->map1.so_line);
+	free(data->map1.we_line);
+	free(data->map1.ea_line);
+	free(data->map1.no_path);
+	free(data->map1.so_path);
+	free(data->map1.we_path);
+	free(data->map1.ea_path);
+	ft_free(data->all_map);
+	ft_free(data->map);
+	free(data->rays);
+	free(data);
 	exit(1);
 }
 

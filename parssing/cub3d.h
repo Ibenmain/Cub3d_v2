@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/13 23:03:32 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:13:18 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,15 @@
 # define TILE_SIZE 10
 # define TURNDIRECTION 0
 # define WALKDIRECTION 0
-# define MOVESPEED 2.0  
-# define TEXTURE_WIDTH 640
-# define TEXTURE_HEIGHT 400
+# define MOVESPEED 2.0
+
+enum
+{
+	NO,
+	SO,
+	WE,
+	EA,
+};
 
 typedef struct s_map1
 {
@@ -67,23 +73,25 @@ typedef struct s_img {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }				t_img;
 
-typedef struct s_img1 {
-	void	*img1;
-	char	*addr1;
-	int		bits_per_pixel1;
-	int		line_length1;
-	int		endian1;
-}				t_img1;
+// typedef struct s_img1 {
+// 	void	*img1;
+// 	char	*addr1;
+// 	int		bits_per_pixel1;
+// 	int		line_length1;
+// 	int		endian1;
+// }				t_img1;
 
-typedef struct s_imgwall {
-	void	*imgwall;
-	char	*addrwall;
-	int		bits_per_pixelwall;
-	int		line_lengthwall;
-	int		endianwall;
-}				t_imgwall;
+// typedef struct s_imgwall {
+// 	void	*imgwall;
+// 	char	*addrwall;
+// 	int		bits_per_pixelwall;
+// 	int		line_lengthwall;
+// 	int		endianwall;
+// }				t_imgwall;
 
 typedef struct s_dir{
 	char	n;
@@ -147,6 +155,8 @@ typedef struct s_rays{
 	int		dir_down;
 	int		dir_left;
 	int		dir_right;
+	int	textur_offset_x;
+	int	textur_offset_y;
 }		t_rays;
 
 typedef struct s_data{
@@ -168,13 +178,12 @@ typedef struct s_data{
 	double			perp_disc;
 	double			disc_proj_plane;
 	double			proj_wall_height;
-	unsigned int	*wall_texture;
 	t_map1			map1;
 	t_dir			dir;
 	t_mlx			mlx;
-	t_img			img;
-	t_img1			img1;
-	t_imgwall		imgwall;
+	t_img			img_mini;
+	t_img			img_3d;
+	t_img			img_dir[4];
 	t_player		player;
 	t_ray			ray;
 	t_rays			*rays;
@@ -189,7 +198,7 @@ void	ft_get_map(char *name_map, t_data *data);
 void	ft_map_size(char *map, t_data *data);
 void	ft_divide_down_map(t_data *data);
 int		ft_check_name_map(char *map_name);
-void	ft_print_error(char *str, void	*data);
+void	ft_print_error(char *str, t_data *data);
 int		ft_check_line(char *line);
 int		ft_check_error_tab(char **tab);
 void	ft_get_map(char *name_map, t_data *data);
