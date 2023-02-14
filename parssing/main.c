@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:39 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 19:08:44 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:37:28 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,22 @@ int	ft_check_error_tab(char **tab)
 
 int	ft_check_spase_in_line(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (i && str[i] == '\0')
 		return (1);
-	return (0);	
+	return (0);
 }
 
 void	ft_divide_map(t_data *data)
 {
-	int i = 0;
-	while ( data->map[i])
+	int	i;
+
+	i = 0;
+	while (data->map[i])
 	{
 		if (ft_check_spase_in_line(data->map[i]))
 			ft_print_error("error: invalid map", data);

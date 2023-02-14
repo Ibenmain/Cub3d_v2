@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 19:13:18 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:35:37 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,6 @@ typedef struct s_img {
 	int		width;
 	int		height;
 }				t_img;
-
-// typedef struct s_img1 {
-// 	void	*img1;
-// 	char	*addr1;
-// 	int		bits_per_pixel1;
-// 	int		line_length1;
-// 	int		endian1;
-// }				t_img1;
-
-// typedef struct s_imgwall {
-// 	void	*imgwall;
-// 	char	*addrwall;
-// 	int		bits_per_pixelwall;
-// 	int		line_lengthwall;
-// 	int		endianwall;
-// }				t_imgwall;
 
 typedef struct s_dir{
 	char	n;

@@ -6,27 +6,15 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:22:28 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 14:01:56 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:42:55 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parssing/cub3d.h"
 
-int ___is_wall(double next_hor_y, double next_hor_x, t_data *data)
-{
-	double next_hor;
-
-	next_hor = 0;
-	if (data->player.is_rayfacing_left)
-		next_hor = next_hor_y - 1;
-	if (data->map[(int)(next_hor / TILE_SIZE)][(int)(next_hor_x / TILE_SIZE)] == '1')
-		return (1);
-	return (0);
-}
-
 void	ft_horizontal(double xstep, double ystep, t_data *data)
 {
-	double y;
+	double	y;
 
 	y = 0;
 	data->ray.next_hor_x = data->ray.xintercept_hor;

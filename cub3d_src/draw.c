@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:30:58 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 18:42:00 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:42:03 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	draw_rectangle(int x, int y, t_data *data, int color)
 		j = y * TILE_SIZE;
 		while (j < y * TILE_SIZE + TILE_SIZE)
 		{
-			if ((i % TILE_SIZE == 0 || j % TILE_SIZE == 0) && data->map[(int)(i / TILE_SIZE)][(int)(j / TILE_SIZE)] != ' ')
+			if ((i % TILE_SIZE == 0 || j % TILE_SIZE == 0) && \
+				data->map[(int)(i / TILE_SIZE)][(int)(j / TILE_SIZE)] != ' ')
 				my_mlx_pixel_put(data, j, i, 0x00404040);
 			else
 				my_mlx_pixel_put(data, j, i, color);
@@ -62,21 +63,20 @@ void	ft_draw_map(t_data *data)
 {
 	int		i;
 	int		j;
-	
+
 	i = -1;
 	while (++i < data->len)
 	{
 		j = -1;
 		while (++j < data->line_max)
 		{
-				if (data->map[i][j] == ' ')
-					draw_rectangle(i, j, data, 0xFF000000);
-				else if (data->map[i][j] == '1')
-					draw_rectangle(i, j, data, 0x000000);
-				else
-					draw_rectangle(i, j, data, 0x00CCCCFF);
+			if (data->map[i][j] == ' ')
+				draw_rectangle(i, j, data, 0xFF000000);
+			else if (data->map[i][j] == '1')
+				draw_rectangle(i, j, data, 0x000000);
+			else
+				draw_rectangle(i, j, data, 0x00CCCCFF);
 		}
-		
 	}
 }
 
