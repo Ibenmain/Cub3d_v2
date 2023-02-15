@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:55:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 13:46:45 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:54:27 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	DDA(double X0, double Y0, double X1, double Y1, t_data *data)
 		steps = fabs(dx);
 	else
 		steps = fabs(dy);
+	if (steps == 0)
+		return ;
 	xincrement = dx / steps;
 	yincrement = dy / steps;
 	x = X0;

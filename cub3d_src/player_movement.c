@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:04:15 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 23:26:08 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:58:27 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_has_wall(t_data *data, double x, double y)
 	double	mapx;
 	double	mapy;
 
-	if (x < 0 || x > data->len * TILE_SIZE \
-		|| y < 0 || y > data->line_max * TILE_SIZE)
-		return (0);
+	if (x <= 0 || x > data->len * TILE_SIZE \
+		|| y <= 0 || y > data->line_max * TILE_SIZE)
+		return (1);
 	mapx = floor(x / TILE_SIZE);
 	mapy = floor(y / TILE_SIZE);
 	if ((data->map[(int)mapx][(int)floor(data->player.pos_x / TILE_SIZE)] \

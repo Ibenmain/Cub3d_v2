@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 13:47:53 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:55:44 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	generate_projection(t_data *data)
 			- data->player.rotationangl);
 		data->disc_proj_plane = (WIDTH_WIN / 2) / tan(data->player. \
 			fov_angle / 2.0);
+		if (data->perp_disc == 0)
+			return ;
 		data->proj_wall_height = (TILE_SIZE / data->perp_disc) * \
 			data->disc_proj_plane;
 		data->rays[i].wall_strip_height = (int)data->proj_wall_height;
