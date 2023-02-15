@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 23:35:37 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:48:22 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,11 @@ typedef struct s_rays{
 	int		dir_down;
 	int		dir_left;
 	int		dir_right;
-	int	textur_offset_x;
-	int	textur_offset_y;
+	int		textur_offset_x;
+	int		textur_offset_y;
+	int		wall_strip_height;
+	int		wall_top_pixl;
+	int		wall_bottom_pixl;
 }		t_rays;
 
 typedef struct s_data{
@@ -234,5 +237,7 @@ void	ft_draw_map(t_data *data);
 void	DDA(double X0, double Y0, double X1, double Y1, t_data *data);
 void	ft_cast_rays(t_data *data);
 int		_is_wall(double next_hor_x, double next_hor_y, t_data *data);
-
+int		ft_get_direction(t_data *data, int i);
+int		create_trgb(int t, int r, int g, int b);
+void	draw_rect(t_data *data);
 #endif

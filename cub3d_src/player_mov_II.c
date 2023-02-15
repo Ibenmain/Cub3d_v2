@@ -6,11 +6,50 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:07:00 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/09 22:55:26 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:48:02 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parssing/cub3d.h"
+
+int	get_line_map(t_data *data)
+{
+	int	line;
+	int	i;
+
+	i = 0;
+	line = 0;
+	data->line_max = 0;
+	while (data->map[i])
+	{
+		if (data->line_max < ft_strlen(data->map[i]))
+			data->line_max = ft_strlen(data->map[i]);
+		line += 1;
+		i++;
+	}
+	return (line);
+}
+
+void	draw_rect(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0 ;
+	while (i < data->len * TILE_SIZE)
+	{
+		j = 0;
+		while (j < (data->line_max - 1) * TILE_SIZE)
+		{
+			if (i == 0 || i + 1 == (data->len) * TILE_SIZE)
+				my_mlx_pixel_put(data, j, i, 0x000000);
+			if (j == 0 || j + 1 == (data->line_max - 1) * TILE_SIZE)
+				my_mlx_pixel_put(data, j, i, 0x000000);
+			j++;
+		}
+		i++;
+	}
+}
 
 int	ft_player_movement(t_data *data)
 {
