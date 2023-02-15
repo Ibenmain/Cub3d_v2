@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 13:48:22 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:50:45 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,6 @@ int		ft_check_name_map(char *map_name);
 void	ft_print_error(char *str, t_data *data);
 int		ft_check_line(char *line);
 int		ft_check_error_tab(char **tab);
-void	ft_get_map(char *name_map, t_data *data);
 void	ft_directione(char **tab, t_data *data);
 void	ft_range_of_color(char *val, char *line, t_data *data);
 void	ft_color_and_floor(char **tab, t_data *data);
