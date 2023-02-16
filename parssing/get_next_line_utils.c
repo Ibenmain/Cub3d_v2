@@ -3,14 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:53:25 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/15 13:53:27 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:47:10 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_free_all_data(t_data *data)
+{
+	free(data->map1.no_line);
+	free(data->map1.so_line);
+	free(data->map1.we_line);
+	free(data->map1.ea_line);
+	free(data->map1.no_path);
+	free(data->map1.so_path);
+	free(data->map1.we_path);
+	free(data->map1.ea_path);
+	ft_free(data->all_map);
+	ft_free(data->map);
+	free(data->rays);
+	free(data);
+}
+
+void	ft_free(char	**tab)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+int	ft_check_spase_in_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (i && str[i] == '\0')
+		return (1);
+	return (0);
+}
+
+char	*ft_dup_with_space(char *line, t_data *data)
+{
+	char	*tab;
+	int		i;
+	int		j;
+
+	tab = (char *)malloc(sizeof(char *) * data->biggest_line + 1);
+	if (!tab)
+		ft_print_error("error allocation\n");
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\n')
+		{
+			j = i;
+			while (j < data->biggest_line)
+				tab[j++] = ' ';
+			tab[j] = '\0';
+		}
+		else
+			tab[i] = line[i];
+		i++;
+	}
+	return (tab);
+}
 
 char	*ft_concat(char *s1, char *s2)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_up_map1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:51:46 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/15 13:51:49 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:11:19 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	ft_get_map(char *name_map, t_data *data)
 
 	data->all_map = (char **)malloc(sizeof(char *) * (data->line_map + 1));
 	if (!data->all_map)
-		ft_print_error("Error allocation\n", data);
+		ft_print_error("Error allocation\n");
 	fd = open(name_map, O_RDONLY);
 	if (fd == -1)
-		ft_print_error("the doesn't exist\n", data);
+		ft_print_error("the doesn't exist\n");
 	i = -1;
 	line = get_next_line(fd);
 	while (++i < data->line_map)
@@ -64,7 +64,7 @@ void	ft_get_map(char *name_map, t_data *data)
 	close(fd);
 }
 
-void	ft_check_error_color(char **tab, t_data *data)
+void	ft_check_error_color(char **tab)
 {
 	int		i;
 	int		j;
@@ -76,14 +76,14 @@ void	ft_check_error_color(char **tab, t_data *data)
 		while (tab[i][j])
 		{
 			if (tab[i][j] < '0' || tab[i][j] > '9')
-				ft_print_error("error: the RGB color must be digit\n", data);
+				ft_print_error("error: the RGB color must be digit\n");
 			j++;
 		}
 		i++;
 	}
 }
 
-void	ft_convert_to_int(char **tab, t_data *data)
+void	ft_convert_to_int(char **tab)
 {
 	int		i;
 
@@ -92,7 +92,7 @@ void	ft_convert_to_int(char **tab, t_data *data)
 	{
 		if (ft_atoi(tab[i]) < 0 || ft_atoi(tab[i]) > 255)
 			ft_print_error("error: out of range,\
- the range from 0 to 255\n", data);
+ the range from 0 to 255\n");
 		i++;
 	}
 }

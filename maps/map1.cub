@@ -2,7 +2,7 @@
 C 224,255,255
 F 128,122,116
 
-NO ./image/Fcb.xpm
+NO ./image/wallnb1.xpm
 SO ./image/wall.xpm
 WE ./image/wallnumber1.xpm
 EA ./image/RcaImage.xpm

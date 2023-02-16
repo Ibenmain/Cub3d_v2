@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/14 23:56:29 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:08:35 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_cub3d(t_data *data)
 	ft_position_player(data);
 	data->rays = (t_rays *)malloc(sizeof(t_rays) * data->player.num_ray);
 	if (!data->rays)
-		ft_print_error("error: allocation failed", data);
+		ft_print_error("error: allocation failed");
 	ft_mlx_wind(data);
 	ft_mlx_loop(data);
 }

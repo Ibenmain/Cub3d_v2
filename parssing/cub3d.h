@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 13:50:45 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:47:44 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,11 @@ typedef struct s_data{
 	double			perp_disc;
 	double			disc_proj_plane;
 	double			proj_wall_height;
+	double			xincrement;
+	double			yincrement;
+	double			steps;
+	double			dx;
+	double			dy;
 	t_map1			map1;
 	t_dir			dir;
 	t_mlx			mlx;
@@ -185,15 +190,15 @@ void	ft_get_map(char *name_map, t_data *data);
 void	ft_map_size(char *map, t_data *data);
 void	ft_divide_down_map(t_data *data);
 int		ft_check_name_map(char *map_name);
-void	ft_print_error(char *str, t_data *data);
+void	ft_print_error(char *str);
 int		ft_check_line(char *line);
 int		ft_check_error_tab(char **tab);
 void	ft_directione(char **tab, t_data *data);
 void	ft_range_of_color(char *val, char *line, t_data *data);
 void	ft_color_and_floor(char **tab, t_data *data);
 void	ft_free(char	**tab);
-void	ft_convert_to_int(char **tab, t_data *data);
-void	ft_check_error_color(char **tab, t_data *data);
+void	ft_convert_to_int(char **tab);
+void	ft_check_error_color(char **tab);
 void	ft_passing_error(t_data *data, char *line);
 void	ft_parssing_map(t_data *data);
 void	ft_check_duplicat(t_data *data);
@@ -233,10 +238,14 @@ void	draw_circle(t_data *data, int x, int y, int color);
 void	draw_rectangle(int x, int y, t_data *data, int color);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_draw_map(t_data *data);
-void	DDA(double X0, double Y0, double X1, double Y1, t_data *data);
+void	dda(double X1, double Y1, t_data *data);
 void	ft_cast_rays(t_data *data);
 int		_is_wall(double next_hor_x, double next_hor_y, t_data *data);
 int		ft_get_direction(t_data *data, int i);
 int		create_trgb(int t, int r, int g, int b);
 void	draw_rect(t_data *data);
+void	generate_projection(t_data *data);
+void	ft_rander_wall_strip(t_data *data, int i);
+int		ft_check_spase_in_line(char *str);
+void	ft_free_all_data(t_data *data);
 #endif

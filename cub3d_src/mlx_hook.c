@@ -6,48 +6,38 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:55:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 21:54:27 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:34:20 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parssing/cub3d.h"
 
-void	DDA(double X0, double Y0, double X1, double Y1, t_data *data)
+int	create_trgb(int t, int r, int g, int b)
 {
-	double	xincrement;
-	double	yincrement;
-	double	steps;
-	double	dx;
-	double	dy;
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	dda(double X1, double Y1, t_data *data)
+{
 	double	x;
 	double	y;
 	int		i;
 
 	i = 0;
-	dx = X1 - X0;
-	dy = Y1 - Y0;
-	if (fabs(dx) > fabs(dy))
-		steps = fabs(dx);
-	else
-		steps = fabs(dy);
-	if (steps == 0)
-		return ;
-	xincrement = dx / steps;
-	yincrement = dy / steps;
-	x = X0;
-	y = Y0;
-	while (i <= steps)
+	data->dx = X1 - data->player.pos_x;
+	data->dy = Y1 - data->player.pos_y;
+	data->steps = fmax(fabs(data->dx), fabs(data->dy));
+	data->xincrement = data->dx / data->steps;
+	data->yincrement = data->dy / data->steps;
+	x = data->player.pos_x;
+	y = data->player.pos_y;
+	while (i <= data->steps)
 	{
 		my_mlx_pixel_put(data, round(x), round(y), 0xFFFFCC);
-		x += xincrement;
-		y += yincrement;
+		x += data->xincrement;
+		y += data->yincrement;
 		i++;
 	}
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
 }
 
 int	ft_get_direction(t_data *data, int i)

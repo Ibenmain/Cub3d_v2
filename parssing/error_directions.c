@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_directions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:51:56 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/15 13:51:58 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:12:14 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_check_wall(t_data *data)
 	i = 0;
 	j = 0;
 	if (!data->map[0])
-		ft_print_error("error: messing map\n", data);
+		ft_print_error("error: messing map\n");
 	line = data->map[0];
 	line2 = data->map[data->j - 1];
 	if (line[0] != '1' && line[0] != ' ')
@@ -52,28 +52,15 @@ void	ft_get_max_line(t_data *data)
 	}
 }
 
-void	ft_print_error(char *str, t_data *data)
+void	ft_print_error(char *str)
 {
 	int	i;
 
-	// (void)data;
 	i = 0;
 	if (!str)
 		return ;
 	while (str[i] != '\0')
 		write(1, &str[i++], 1);
-	free(data->map1.no_line);
-	free(data->map1.so_line);
-	free(data->map1.we_line);
-	free(data->map1.ea_line);
-	free(data->map1.no_path);
-	free(data->map1.so_path);
-	free(data->map1.we_path);
-	free(data->map1.ea_path);
-	ft_free(data->all_map);
-	ft_free(data->map);
-	free(data->rays);
-	free(data);
 	exit(1);
 }
 

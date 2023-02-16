@@ -6,42 +6,47 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:49:21 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 22:32:40 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:43:04 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parssing/cub3d.h"
 
-int	calcule_dis(t_data *data, int i)
+void	ft_get_min_dictance(t_data *data, int i, double ver_dis, double hor_dis)
+{
+	if (ver_dis <= hor_dis)
+	{
+		dda(data->ray.wall_hit_ver_x, data->ray.wall_hit_ver_y, data);
+		data->rays[i].pos_ray_x = data->ray.wall_hit_ver_x;
+		data->rays[i].pos_ray_y = data->ray.wall_hit_ver_y;
+		data->rays[i].distance = ver_dis;
+		data->rays[i].ver_hor = 1;
+	}
+	else
+	{
+		dda(data->ray.wall_hit_hor_x, data->ray.wall_hit_hor_y, data);
+		data->rays[i].pos_ray_x = data->ray.wall_hit_hor_x;
+		data->rays[i].pos_ray_y = data->ray.wall_hit_hor_y;
+		data->rays[i].distance = hor_dis;
+		data->rays[i].ver_hor = 0;
+	}
+}
+
+void	calcule_dis(t_data *data, int i)
 {
 	double	ver_dis;
 	double	hor_dis;
 
 	// we need get the smaller distanc between horizontal & vertical
-	ver_dis = hypot(data->player.pos_x - data->ray.wall_hit_ver_x, data->player.pos_y - data->ray.wall_hit_ver_y);
-	hor_dis = hypot(data->player.pos_x - data->ray.wall_hit_hor_x, data->player.pos_y - data->ray.wall_hit_hor_y);
+	ver_dis = hypot(data->player.pos_x - data->ray.wall_hit_ver_x, \
+		data->player.pos_y - data->ray.wall_hit_ver_y);
+	hor_dis = hypot(data->player.pos_x - data->ray.wall_hit_hor_x, \
+		data->player.pos_y - data->ray.wall_hit_hor_y);
 	if (data->ray.found_wall_h && data->ray.found_wall_v)
-	{
-		if (ver_dis <= hor_dis)
-		{
-			DDA(data->player.pos_x, data->player.pos_y, data->ray.wall_hit_ver_x, data->ray.wall_hit_ver_y, data);
-			data->rays[i].pos_ray_x = data->ray.wall_hit_ver_x;
-			data->rays[i].pos_ray_y = data->ray.wall_hit_ver_y; 
-			data->rays[i].distance = ver_dis;
-			data->rays[i].ver_hor = 1;
-		}
-		else
-		{
-			DDA(data->player.pos_x, data->player.pos_y, data->ray.wall_hit_hor_x, data->ray.wall_hit_hor_y, data);
-			data->rays[i].pos_ray_x = data->ray.wall_hit_hor_x;
-			data->rays[i].pos_ray_y = data->ray.wall_hit_hor_y;
-			data->rays[i].distance = hor_dis;
-			data->rays[i].ver_hor = 0;
-		}
-	}
+		ft_get_min_dictance(data, i, ver_dis, hor_dis);
 	else if (data->ray.found_wall_h)
 	{
-		DDA(data->player.pos_x, data->player.pos_y, data->ray.wall_hit_hor_x, data->ray.wall_hit_hor_y, data);
+		dda(data->ray.wall_hit_hor_x, data->ray.wall_hit_hor_y, data);
 		data->rays[i].pos_ray_x = data->ray.wall_hit_hor_x;
 		data->rays[i].pos_ray_y = data->ray.wall_hit_hor_y;
 		data->rays[i].distance = hor_dis;
@@ -49,13 +54,12 @@ int	calcule_dis(t_data *data, int i)
 	}
 	else if (data->ray.found_wall_v)
 	{
-		DDA(data->player.pos_x, data->player.pos_y, data->ray.wall_hit_ver_x, data->ray.wall_hit_ver_y, data);
+		dda(data->ray.wall_hit_ver_x, data->ray.wall_hit_ver_y, data);
 		data->rays[i].pos_ray_x = data->ray.wall_hit_ver_x;
-		data->rays[i].pos_ray_y = data->ray.wall_hit_ver_y; 
+		data->rays[i].pos_ray_y = data->ray.wall_hit_ver_y;
 		data->rays[i].distance = ver_dis;
 		data->rays[i].ver_hor = 1;
 	}
-	return (0);
 }
 
 void	ft_initial_var(t_data *data, int i)
@@ -105,9 +109,10 @@ void	ft_determine_the_trends(double rayangle, t_data *data, int i)
 
 void	ft_cast_rays(t_data *data)
 {
-	double rayangle;
-	int i = 0;
+	double	rayangle;
+	int		i;
 
+	i = 0;
 	rayangle = data->player.rotationangl - (data->player.fov_angle / 2);
 	while (i < data->player.num_ray)
 	{

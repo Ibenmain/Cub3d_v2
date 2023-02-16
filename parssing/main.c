@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:53:04 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/15 13:53:05 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:48:41 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_map_size(char *map, t_data *data)
 	data->line_map = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		ft_print_error("can't open file\n", data);
+		ft_print_error("can't open file\n");
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -45,19 +45,6 @@ void	ft_map_size(char *map, t_data *data)
 	}
 	close(fd);
 	free(line);
-}
-
-void	ft_free(char	**tab)
-{
-	int		i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
 }
 
 int	ft_check_error_tab(char **tab)
@@ -70,18 +57,6 @@ int	ft_check_error_tab(char **tab)
 	return (nb);
 }
 
-int	ft_check_spase_in_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] == ' ')
-		i++;
-	if (i && str[i] == '\0')
-		return (1);
-	return (0);
-}
-
 void	ft_divide_map(t_data *data)
 {
 	int	i;
@@ -90,25 +65,9 @@ void	ft_divide_map(t_data *data)
 	while (data->map[i])
 	{
 		if (ft_check_spase_in_line(data->map[i]))
-			ft_print_error("error: invalid map", data);
+			ft_print_error("error: invalid map");
 		i++;
 	}
-}
-
-void	ft_free_all_data(t_data *data)
-{
-	free(data->map1.no_line);
-	free(data->map1.so_line);
-	free(data->map1.we_line);
-	free(data->map1.ea_line);
-	free(data->map1.no_path);
-	free(data->map1.so_path);
-	free(data->map1.we_path);
-	free(data->map1.ea_path);
-	ft_free(data->all_map);
-	ft_free(data->map);
-	free(data->rays);
-	free(data);
 }
 
 int	main(int ac, char **av)

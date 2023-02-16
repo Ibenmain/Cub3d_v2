@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_up_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:52:17 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/15 13:52:20 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:09:05 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_dup_space(char *line, t_data *data)
 
 	tab = (char *)malloc(sizeof(char *) * data->biggest_line + 1);
 	if (!tab)
-		ft_print_error("error allocation", data);
+		ft_print_error("error allocation");
 	i = 0;
 	while (line[i])
 	{
@@ -97,7 +97,7 @@ void	ft_divide_down_map(t_data *data)
 	data->map = (char **)malloc(sizeof(char *) * \
 		((data->line_map - data->i) + 1));
 	if (!data->map)
-		ft_print_error("Error allocation\n", data);
+		ft_print_error("Error allocation\n");
 	data->j = 0;
 	while (data->all_map[data->i])
 	{

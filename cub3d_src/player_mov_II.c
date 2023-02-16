@@ -6,11 +6,57 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:07:00 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 13:48:02 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:41:37 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parssing/cub3d.h"
+
+void	ft_wall_projection(t_data *data, int i)
+{
+	data->perp_disc = data->rays[i].distance * cos(data->rays[i].ray_angle \
+		- data->player.rotationangl);
+	data->disc_proj_plane = (WIDTH_WIN / 2) / tan(data->player. \
+		fov_angle / 2.0);
+	if (data->perp_disc == 0)
+		data->perp_disc = 1;
+	data->proj_wall_height = (TILE_SIZE / data->perp_disc) * \
+		data->disc_proj_plane;
+	data->rays[i].wall_strip_height = (int)data->proj_wall_height;
+	data->rays[i].wall_top_pixl = (HEIGHT_WIN / 2.0) - \
+		(data->rays[i].wall_strip_height / 2);
+	if (data->rays[i].wall_top_pixl < 0)
+		data->rays[i].wall_top_pixl = 0;
+	data->rays[i].wall_bottom_pixl = (HEIGHT_WIN / 2) + \
+		(data->rays[i].wall_strip_height / 2);
+	if (data->rays[i].wall_bottom_pixl > HEIGHT_WIN)
+		data->rays[i].wall_bottom_pixl = HEIGHT_WIN;
+}
+
+void	generate_projection(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->player.num_ray)
+	{
+		ft_wall_projection(data, i);
+		j = 0;
+		//set the color of the ceiling
+		while (j++ < data->rays[i].wall_top_pixl)
+			my_mlx_pixel_put1(data, i, j, create_trgb(0, data->val1_c, \
+			data->val2_c, data->val3_c));
+		//generate texture
+		ft_rander_wall_strip(data, i);
+		// set the color of the floor
+		j = data->rays[i].wall_bottom_pixl;
+		while (j++ < HEIGHT_WIN)
+			my_mlx_pixel_put1(data, i, j, create_trgb(0, data->val1_f, \
+			data->val2_f, data->val3_f));
+		i++;
+	}
+}
 
 int	get_line_map(t_data *data)
 {

@@ -6,13 +6,13 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:22:43 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/07 14:02:06 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:43:18 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parssing/cub3d.h"
 
-int _is_wall(double next_hor_x, double next_hor_y, t_data *data)
+int	_is_wall(double next_hor_x, double next_hor_y, t_data *data)
 {
 	if (data->map[(int)(next_hor_x / TILE_SIZE)] \
 		[(int)(next_hor_y / TILE_SIZE)] == '1')
@@ -22,7 +22,7 @@ int _is_wall(double next_hor_x, double next_hor_y, t_data *data)
 
 void	ft_verticale(double xstep, double ystep, t_data *data)
 {
-	double x;
+	double	x;
 
 	x = 0;
 	data->ray.next_ver_x = data->ray.xintercept_ver;
@@ -50,7 +50,7 @@ void	ft_ray_cast_ver(t_data *data, double ray_angle)
 {
 	double	xstep;
 	double	ystep;
-	
+
 	// find the x-coordinat of the closest verticale grid intersection
 	data->ray.xintercept_ver = floor(data->player.pos_x \
 	/ TILE_SIZE) * TILE_SIZE;

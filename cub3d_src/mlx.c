@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:30:20 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/15 23:53:11 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:33:55 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,46 +68,6 @@ void	ft_rander_wall_strip(t_data *data, int i)
 			i, data->rays[i].wall_strip_height);
 		color = ft_get_color(i, data);
 		my_mlx_pixel_put1(data, i, j, color);
-	}
-}
-
-void	generate_projection(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < data->player.num_ray)
-	{
-		data->perp_disc = data->rays[i].distance * cos(data->rays[i].ray_angle \
-			- data->player.rotationangl);
-		data->disc_proj_plane = (WIDTH_WIN / 2) / tan(data->player. \
-			fov_angle / 2.0);
-		if (data->perp_disc == 0)
-			return ;
-		data->proj_wall_height = (TILE_SIZE / data->perp_disc) * \
-			data->disc_proj_plane;
-		data->rays[i].wall_strip_height = (int)data->proj_wall_height;
-		data->rays[i].wall_top_pixl = (HEIGHT_WIN / 2.0) - \
-			(data->rays[i].wall_strip_height / 2);
-		if (data->rays[i].wall_top_pixl < 0)
-			data->rays[i].wall_top_pixl = 0;
-		data->rays[i].wall_bottom_pixl = (HEIGHT_WIN / 2) + \
-			(data->rays[i].wall_strip_height / 2);
-		if (data->rays[i].wall_bottom_pixl > HEIGHT_WIN)
-			data->rays[i].wall_bottom_pixl = HEIGHT_WIN;
-		//set the color of the ceiling
-		j = 0;
-		while (j++ < data->rays[i].wall_top_pixl)
-			my_mlx_pixel_put1(data, i, j, create_trgb(0, data->val1_c, \
-			data->val2_c, data->val3_c));
-		ft_rander_wall_strip(data, i);
-		// set the color of the floor
-		j = data->rays[i].wall_bottom_pixl;
-		while (j++ < HEIGHT_WIN)
-			my_mlx_pixel_put1(data, i, j, create_trgb(0, data->val1_f, \
-			data->val2_f, data->val3_f));
-		i++;
 	}
 }
 
