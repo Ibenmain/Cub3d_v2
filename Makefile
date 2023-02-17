@@ -1,7 +1,7 @@
 NAME = cub3d
 INC = parssing/cub3d.h
 LIBFT = ./libft_cub/libft.a
-CFLAGS = -Wall -Werror -Wextra -Ofast
+CFLAGS = -Wall -Werror -Wextra -Ofast #-g -fsanitize=address 
 CC = cc
 RM = rm -rf
 SRCS = parssing/main.c parssing/get_next_line.c parssing/get_next_line_utils.c \

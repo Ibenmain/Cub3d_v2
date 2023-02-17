@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/16 18:47:44 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:16:55 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct s_data{
 	double			steps;
 	double			dx;
 	double			dy;
+	double			mouse;
 	t_map1			map1;
 	t_dir			dir;
 	t_mlx			mlx;

@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:49:21 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/16 18:43:04 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/17 20:36:44 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	calcule_dis(t_data *data, int i)
 {
 	double	ver_dis;
 	double	hor_dis;
-
 	// we need get the smaller distanc between horizontal & vertical
 	ver_dis = hypot(data->player.pos_x - data->ray.wall_hit_ver_x, \
 		data->player.pos_y - data->ray.wall_hit_ver_y);

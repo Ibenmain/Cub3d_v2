@@ -6,7 +6,7 @@
 /*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:53:25 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/16 18:47:10 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:29:12 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_free_all_data(t_data *data)
 	free(data->map1.so_path);
 	free(data->map1.we_path);
 	free(data->map1.ea_path);
-	ft_free(data->all_map);
 	ft_free(data->map);
 	free(data->rays);
+	ft_free(data->all_map);
 	free(data);
 }
 
