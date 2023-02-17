@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:09:42 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/17 15:44:42 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/17 23:38:26 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,20 @@ int	ft_mlx_wind(t_data *data)
 	ft_get_addr_of_image(data);
 	return (0);
 }
-
-void	ft_cub3d(t_data *data)
+void execution(t_data *data)
 {
+	ft_init_player(data);
 	ft_position_player(data);
 	data->rays = (t_rays *)malloc(sizeof(t_rays) * data->player.num_ray);
 	if (!data->rays)
 		ft_print_error("error: allocation failed");
 	ft_mlx_wind(data);
 	ft_mlx_loop(data);
+}
+int	ft_cub3d(int ac, char **av, t_data *data)
+{
+	if (parssing(ac, av, data) == 1)
+		return (1);
+	execution(data);
+	return (0);
 }

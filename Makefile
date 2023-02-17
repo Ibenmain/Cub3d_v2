@@ -4,7 +4,7 @@ LIBFT = ./libft_cub/libft.a
 CFLAGS = -Wall -Werror -Wextra -Ofast #-g -fsanitize=address 
 CC = cc
 RM = rm -rf
-SRCS = parssing/main.c parssing/get_next_line.c parssing/get_next_line_utils.c \
+SRCS = main.c parssing/get_next_line.c parssing/get_next_line_utils.c \
 		parssing/error_up_map.c parssing/error_up_map1.c parssing/error_up_map2.c \
 		parssing/parssing.c parssing/error_redirection.c parssing/error_directions.c \
 		cub3d_src/cub3d.c cub3d_src/mlx.c cub3d_src/player.c cub3d_src/player_movement.c \

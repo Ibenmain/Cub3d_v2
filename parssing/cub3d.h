@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:24:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/17 17:16:55 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/17 23:37:34 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void	ft_check_redirection(t_data *data);
 int		ft_check_wall(t_data *data);
 char	*ft_duplicat(char *str, t_data *data);
 char	*ft_dup_with_space(char *line, t_data *data);
-void	ft_cub3d(t_data *data);
+int		ft_cub3d(int ac, char **av, t_data *data);
 int		ft_mlx_wind(t_data *data);
 int		get_line_map(t_data *data);
 int		ft_check_spase(char *line);
@@ -249,4 +249,6 @@ void	generate_projection(t_data *data);
 void	ft_rander_wall_strip(t_data *data, int i);
 int		ft_check_spase_in_line(char *str);
 void	ft_free_all_data(t_data *data);
+int		parssing(int ac, char **av, t_data *data);
+void	execution(t_data *data);
 #endif
