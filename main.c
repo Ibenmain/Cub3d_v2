@@ -6,7 +6,7 @@
 /*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:53:04 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/18 19:58:18 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:17:31 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_divide_map(t_data *data)
 		i++;
 	}
 }
+
 int parssing(int ac, char **av, t_data *data)
 {
 	if (ac != 2 || ft_check_name_map(av[1]))
@@ -81,6 +82,7 @@ int parssing(int ac, char **av, t_data *data)
 int	main(int ac, char **av)
 {
 	t_data	*data;
+
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		return (1);

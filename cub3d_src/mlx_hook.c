@@ -6,7 +6,7 @@
 /*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:55:59 by ibenmain          #+#    #+#             */
-/*   Updated: 2023/02/18 20:16:10 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:18:29 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,41 +68,22 @@ int	ft_check_spase(char *line)
 	return (0);
 }
 
-// int	handle_mouse(int x, int y, t_data *data)
-// {
-// 	mlx_clear_window(data->var.mlx, data->var.win);
-// 	(void)y;
-// 	if (data->mouse != 1e15)
-// 	{
-// 		if (x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT)
-// 		{
-// 			if (data->mouse < x)
-// 				data->ply.turn_dir = -1;
-// 			else
-// 				data->ply.turn_dir = 1;
-// 			data->ply.rotation_angle += (data->ply.turn_dir \
-// 			* 0.02);
-// 			data->mouse = x;
-// 		}
-// 		render(data);
-// 	}
-// 	else
-// 		data->mouse = x;
-// 	return (0);
-// }
-
 int	_handler_mouse(int y, int x, t_data *data)
 {
 	mlx_clear_window(data->mlx.mx, data->mlx.mlx_win);
-	if (x > 0 && x < WIDTH_WIN && y > 0 && y < HEIGHT_WIN)
+	if (y > 0 && y < WIDTH_WIN && x > 0 && x < HEIGHT_WIN)
 	{
-		if (x > data->mouse)
-			key_pressed(RIGHT_KEY, data);
-		else
-			key_pressed(LEFT_KEY, data);
+		if (data->mouse != y)
+		{
+			if (y > data->mouse)
+				data->player.turndirection = 1;
+			else
+				data->player.turndirection = -1;
+		}
 	}
-	data->mouse = x;
-	ft_put_image_to_win(data);
+	data->mouse = y;
+	ft_player_movement(data);
+	data->player.turndirection = 0;
 	return (0);
 }
 
