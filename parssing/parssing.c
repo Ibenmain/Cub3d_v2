@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parssing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:52:04 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/17 23:48:14 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/18 00:05:45 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_check_duplicat(t_data *data)
 	if (data->map1.no_dup != 1 || data->map1.so_dup != 1 || data->map1.we_dup \
 		!= 1 || data->map1.ea_dup != 1 || data->map1.c_dup != 1 \
 		|| data->map1.f_dup != 1)
-		ft_print_error("error: error: invalid map\n");
+		ft_print_error("error: invalid map\n");
 }
 
 char	*ft_duplicat(char *str, t_data *data)

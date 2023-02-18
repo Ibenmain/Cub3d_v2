@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:53:04 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/17 23:52:12 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/18 00:07:28 by ibenmain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_divide_map(t_data *data)
 		i++;
 	}
 }
+
 int parssing(int ac, char **av, t_data *data)
 {
 	if (ac != 2 || ft_check_name_map(av[1]))
@@ -83,6 +84,7 @@ int parssing(int ac, char **av, t_data *data)
 int	main(int ac, char **av)
 {
 	t_data	*data;
+
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		return (1);
