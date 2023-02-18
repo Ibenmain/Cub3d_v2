@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_up_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:52:17 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/16 16:09:05 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:46:04 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_line(char *line, t_data *data)
 	return (tab);
 }
 
-char	*ft_check_size_line(char	*line, t_data *data)
+char	*ft_check_size_line(char *line, t_data *data)
 {
 	char	*tab;
 
@@ -94,6 +94,7 @@ char	*ft_check_size_line(char	*line, t_data *data)
 
 void	ft_divide_down_map(t_data *data)
 {
+	ft_get_max_line(data);
 	data->map = (char **)malloc(sizeof(char *) * \
 		((data->line_map - data->i) + 1));
 	if (!data->map)

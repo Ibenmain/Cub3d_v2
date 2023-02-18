@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_directions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:51:56 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/16 16:12:14 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:44:47 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void	ft_parssing_map(t_data *data)
 		}
 		data->i++;
 	}
+	ft_check_duplicat(data);
 }

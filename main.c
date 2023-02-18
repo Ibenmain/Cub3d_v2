@@ -6,7 +6,7 @@
 /*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:53:04 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/17 23:52:12 by nmoussam         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:58:18 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int parssing(int ac, char **av, t_data *data)
 	ft_map_size(av[1], data);
 	ft_get_map(av[1], data);
 	ft_parssing_map(data);
-	ft_check_duplicat(data);
-	ft_get_max_line(data);
 	ft_divide_down_map(data);
 	ft_check_redirection(data);
 	ft_divide_map(data);

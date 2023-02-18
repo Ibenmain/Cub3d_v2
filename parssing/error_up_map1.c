@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_up_map1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibenmain <ibenmain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nmoussam <nmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:51:46 by nmoussam          #+#    #+#             */
-/*   Updated: 2023/02/16 16:11:19 by ibenmain         ###   ########.fr       */
+/*   Updated: 2023/02/18 16:04:32 by nmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_get_map(char *name_map, t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	data->all_map[i] = NULL;
+	data->all_map[i] = NULL; //
 	close(fd);
 }
 
